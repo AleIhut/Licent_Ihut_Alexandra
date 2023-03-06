@@ -1,0 +1,58 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Decoratiuni.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Decoratiune</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Companie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Companie)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Locație)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Locație)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Material)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Material.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decoratiune.Descriere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decoratiune.Descriere)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Decoratiune.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,91 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<html>
+    <head>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
+    <style>
+        .titlu {
+            color: black;
+            text-align: center;
+            font-family: Garamond, serif;
+            font-style: italic;
+            font-weight: bold;
+            
+            position: relative;
+        }
+
+        p {
+            color: black;
+            text-align: left;
+            font-family: 'Kaushan Script';
+            font-size: 18px;
+            letter-spacing: 2px;
+            word-spacing: 2px;
+            font-style: normal;
+            font-variant: normal;
+            font-style: italic;
+        }
+        m {
+            color: black;
+            text-align: left;
+            font-family: 'Kaushan Script';
+            font-size: 25px;
+            letter-spacing: 2px;
+            word-spacing: 2px;
+            font-style: normal;
+            font-variant: normal;
+            font-style: italic;
+        }
+
+        body {
+            background-color: peru;
+           
+        }
+
+        .right {
+            margin-left: auto;
+            width: 50%;
+            height: 60%;
+        }
+
+        
+    </style>
+</head>
+<body>
+   
+    <div class="text-center">
+        <h1 class="titlu" text-aling="left" class="left"> <br />
+            
+            Bine ai venit, bine ai nimerit!
+        <br/>    
+        </h1>
+        @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+        <p> Dorești să ai un eveniment reușit dar nu cunoști prestatorii de servicii din zona ta?<m> Ai nimerit unde trebuia! </m> </p>
+        <p>  Platforma noastră oferă posibilitatea firmelor 
+           de prestări servicii să își promoveze activitatea.</p>
+        <p>  Cei care doresc să își organizeze un eveniment 
+          remarcabil au nenumărate oferte din care să aleagă. </p> 
+       
+        
+        <img align="right" src="~/img/logo.jpg" alt="logo" class="right" />
+    </div>
+   
+</body>
+</html>
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h1>Bine ai venit, bine ai nimerit</h1>
+            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <img src="~/img/logo.jpg" alt="logo" align="center" style="float: right center; max-width: 100%; height: auto;" />
+        </div>
+    </div>
+</div>*@

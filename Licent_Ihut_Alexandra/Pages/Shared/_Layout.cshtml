@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Licent_Ihut_Alexandra</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Licent_Ihut_Alexandra.styles.css" asp-append-version="true" />
+   
+
+
+</head>
+<body>
+    <header>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+           @* <h5 class="text-white h4">Collapsed content</h5>*@
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-muted" asp-area="" asp-page="/Index"><i class="bi bi-house"></i> Home</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted" asp-area="" asp-page="/Index"><i class="bi bi-file-earmark-person"></i> Despre</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-muted" asp-area="" asp-page="/Index"><i class="bi bi-phone"></i> Contact</a>
+
+                    </li>
+                   
+                @*<div class="collapse navbar-collapse" id="navbarNavWhiteDropdown" />
+                <ul class="navbar-nav">*@
+                        <li class="nav-item text-dark dropdown">
+                        <div class="btn-group dropend">
+
+                          @*  <a class="nav-link text-muted dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class=""></i>
+                            Servicii
+                        </a>*@
+                            <a class="nav-link text-muted dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-gear"></i>
+                            Servicii
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" asp-area="" asp-page="/SaliEvenimente/Index"><i class="bi bi-geo-alt"></i>Săli de evenimente</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Sonorizari/Index"><i class="bi bi-music-note-list"></i>Sonorizare</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Decoratiuni/Index"><i class=" bi bi-flower3"></i>Decorațiuni/Aranjamente florale</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Mancaruri/Index"><i class="bi bi-camera-reels"></i>Foto-Video</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Bauturi/Index"><i class="bi bi-chat-heart"></i>Momente artistice</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Bauturi/Index"><i class="bi bi-clipboard2-check"></i>Hostess</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Bauturi/Index"><i class="bi bi-fire"></i>Artificii/Ghiață carbonică</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Bauturi/Index"><i class="bi bi-hearts"></i>Prăjituri</a></li>
+                             
+                        </ul>
+                    </li>
+                </ul>
+                </ul>
+
+               @* <span class="text-muted">Toggleable via the navbar brand.</span>*@
+            </div>
+
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+        </nav>
+@*        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Licent_Ihut_Alexandra</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <!--.navbar-collapse
+                        navbarSupportedContent
+                    -->
+                    <span class="navbar-toggler-icon"></span>
+                </button> 
+            </div>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index"> Home</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                    </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" />
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class=""></i>
+                                Servicii
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" asp-area="" asp-page="/SaliEvenimente/Index"><i class="bi bi-geo-alt"></i>Săli de evenimente</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Sonorizari/Index"><i class="bi bi-geo-alt"></i>Sonorizare</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Mancaruri/Index"><i class="bi bi-geo-alt"></i>Flori și decorațiuni</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Bauturi/Index"><i class="bi bi-cup-hot-fill"></i>Hostess</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/mmmm">mmmm</a>
+                    </li>
+            </div>
+        </nav>*@
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Licent_Ihut_Alexandra - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

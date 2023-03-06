@@ -1,0 +1,58 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Decoratiuni.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Decoratiune</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.Companie" class="control-label"></label>
+                <input asp-for="Decoratiune.Companie" class="form-control" />
+                <span asp-validation-for="Decoratiune.Companie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.Locație" class="control-label"></label>
+                <input asp-for="Decoratiune.Locație" class="form-control" />
+                <span asp-validation-for="Decoratiune.Locație" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.Telefon" class="control-label"></label>
+                <input asp-for="Decoratiune.Telefon" class="form-control" />
+                <span asp-validation-for="Decoratiune.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.Email" class="control-label"></label>
+                <input asp-for="Decoratiune.Email" class="form-control" />
+                <span asp-validation-for="Decoratiune.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.MaterialID" class="control-label"></label>
+                <select asp-for="Decoratiune.MaterialID" class ="form-control" asp-items="ViewBag.MaterialID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Decoratiune.Descriere" class="control-label"></label>
+                <input asp-for="Decoratiune.Descriere" class="form-control" />
+                <span asp-validation-for="Decoratiune.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

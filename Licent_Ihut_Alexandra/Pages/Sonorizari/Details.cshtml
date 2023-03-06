@@ -1,0 +1,43 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Sonorizari.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Sonorizare</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sonorizare.Nume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sonorizare.Nume)
+        </dd>
+      @*  <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sonorizare.GenMuzical)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sonorizare.GenMuzical)
+        </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sonorizare.Numar)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sonorizare.Numar)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sonorizare.Descriere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sonorizare.Descriere)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Sonorizare?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

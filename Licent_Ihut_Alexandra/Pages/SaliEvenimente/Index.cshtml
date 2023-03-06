@@ -10,75 +10,49 @@
 <p>
     <a asp-page="Create">Adaugă o sala nouă</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
-            </th>
-            <th>
+<div class="table" >
+    <div style="display: flex">
+@foreach (var item in Model.SalaEveniment)
+{
+        <div >
+                <div>
+                    <a style="background-color:aqua">  @Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)</a>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </div>
+                <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Judet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Localitate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Imagine)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Capacitate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Telefon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Email)
-            </th>
+                @Html.DisplayFor(modelItem => item.Judet)
 
-            <th></th>
-        </tr>
-    </thead>
- 
-        @foreach (var item in Model.SalaEveniment)
-        {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Nume)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Judet)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Localitate)
-            </td>
-             <td>
-                     @Html.DisplayFor(modelItem => item.Imagine)
-              </td>
-           @* <div style="width:33%; display:inline-block; padding:4px">
-                <span stlye="padding-bottom:4px;">
-                    <img src="data:image/jpg;base64 , @item.Imagine" width="120px" height="120px" onclick="openPopup(item)" />
-                </span>*@
-                    @* <h1>@Html.DisplayFor(modelItem => item.DenumireLocatie)</h1>*@
-                    @*  <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-            <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-            <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
-           @* </div>
-            <div id="popup" style=" display:none; position:fixed; top:50%; left:50%;transform:translate(-50%,-50%);width:300px;height:200px; background-color:white;border:1px solid black; padding:20px">
-                <button onclick="closePopup()">Close</button>*@
-            <td>
-                        @Html.DisplayFor(modelItem => item.Capacitate)
-            </td>
-            <td>
-                        @Html.DisplayFor(modelItem => item.Telefon)
-            </td>
-            <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.SalaEveniment[0].Localitate)
+                @Html.DisplayFor(modelItem => item.Localitate)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.SalaEveniment[0].Imagine)
+                @Html.DisplayFor(modelItem => item.Imagine)
+
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.SalaEveniment[0].Capacitate)
+                @Html.DisplayFor(modelItem => item.Capacitate)
+
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.SalaEveniment[0].Telefon)
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.SalaEveniment[0].Email)
+                @Html.DisplayFor(modelItem => item.Email)
+            </div>
+
+            <div>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+            </div>
+        </div>
         }
-</table>
+</div>
+</div>

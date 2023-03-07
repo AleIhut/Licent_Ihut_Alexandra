@@ -4,7 +4,25 @@
 @{
     ViewData["Title"] = "Index";
 }
+<html>
+    <head>
+    <style>
+        .a {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
 
+    </head>
+    <body>
 <h1>Ai aici locațiile pentru un eveniment de neuitat</h1>
 
 <p>
@@ -13,46 +31,59 @@
 <div class="table" >
     <div style="display: flex">
 @foreach (var item in Model.SalaEveniment)
-{
-        <div >
-                <div>
-                    <a style="background-color:aqua">  @Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)</a>
-                @Html.DisplayFor(modelItem => item.Nume)
-            </div>
-                <div>
+{          <div>
+               @* <div>
+                  <a style="background-color:aqua">@Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
+                @Html.DisplayFor(modelItem => item.Nume)</a>
+            </div>*@
+
+           @* <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Judet)
                 @Html.DisplayFor(modelItem => item.Judet)
-
             </div>
+
             <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Localitate)
                 @Html.DisplayFor(modelItem => item.Localitate)
-            </div>
-            <div>
-                @Html.DisplayNameFor(model => model.SalaEveniment[0].Imagine)
-                @Html.DisplayFor(modelItem => item.Imagine)
+            </div>*@
 
+           
+            <div style="width:33%; display:inline-block; padding:4px">
+                    <span stlye="padding-bottom:4px;">
+                        <img src="data:image/jpg;base64 , @item.Imagine" width="120px" height="120px" onclick="openPopup(item)" />
+                    </span>
+                @Html.DisplayFor(modelItem => item.Nume)
             </div>
-            <div>
+            
+           @* <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Capacitate)
                 @Html.DisplayFor(modelItem => item.Capacitate)
-
             </div>
+
             <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Telefon)
                 @Html.DisplayFor(modelItem => item.Telefon)
             </div>
+
             <div>
                 @Html.DisplayNameFor(model => model.SalaEveniment[0].Email)
                 @Html.DisplayFor(modelItem => item.Email)
+            </div>*@
+                <div>
+                    <style>
+                        .button {
+                            background-color: black
+                        }
+                    </style>
+                    <a asp-page="./Edit"  asp-route-id="@item.ID" style="color: white"><button class="btn btn-primary" style="background-color: black "  >Edit</a>
+                    |
+                        <a asp-page="./Details" asp-route-id="@item.ID" style="color: white">Detalii</a>
+ |
+                        <a asp-page="./Delete" asp-route-id="@item.ID" style="color: white">Delete</a>
             </div>
-
-            <div>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </div>
-        </div>
         }
+    </div>
 </div>
-</div>
+</body>
+</html>

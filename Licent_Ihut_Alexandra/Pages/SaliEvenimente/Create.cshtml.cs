@@ -33,31 +33,31 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            //byte[] bytes = null;
-            //if (SalaEveniment.FisierImagine != null)
+            //if (!ModelState.IsValid)
             //{
-            //    using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
-            //    {
-            //        using (BinaryReader br = new BinaryReader(fs))
-            //        {
-            //            bytes = br.ReadBytes((Int32)fs.Length);
-            //        }
-
-            //    }
-            //    SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+            //    return Page();
             //}
 
-            if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (SalaEveniment.FisierImagine != null)
             {
-                return Page();
+                using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+                
             }
-
             _context.SalaEveniment.Add(SalaEveniment);
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
-
+                return RedirectToPage("./Index");
         }
     }
 }
+
 

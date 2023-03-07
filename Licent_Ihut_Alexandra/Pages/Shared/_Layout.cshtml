@@ -119,11 +119,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Licent_Ihut_Alexandra - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="container" style="position: absolute; bottom: 2px">
+        &copy; 2023 - Licent_Ihut_Alexandra - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -132,4 +130,7 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+    
+
 </html>

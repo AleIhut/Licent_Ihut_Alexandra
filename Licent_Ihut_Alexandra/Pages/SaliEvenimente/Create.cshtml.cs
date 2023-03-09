@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.CodeAnalysis;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using NuGet.Protocol.Plugins;
+using System.Reflection.Metadata;
 
 
 namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
@@ -50,14 +53,111 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 
                 }
                 SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
-                
-            }
-            _context.SalaEveniment.Add(SalaEveniment);
-                await _context.SaveChangesAsync();
 
-                return RedirectToPage("./Index");
+            }
+
+            //List<string> validCountries = new List<string>() { "Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud", "Botosani", "Braila", "Brasov", "Bucuresti", "Buzau", "Calarasi", "Caras-Severin", "Cluj", "Constanta", "Covasna", "Dambovita", "Dolj", "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita", "Iasi", "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt", "Prahova", "Salaj", "Satu Mare", "Sibiu", "Suceava", "Teleorman", "Timis", "Tulcea", "Vaslui", "Vrancea" };
+
+
+            // User input
+            // string userInput = SalaEveniment.Judet;
+
+            // Check if the input is a valid country
+            //if (validCountries.Contains(SalaEveniment.Judet))
+            //{
+            //    // Insert the data into the database
+            //    // ...
+            //}
+            //else
+            //{
+            //    // Display an error message
+            //    MessageBox.Show("Invalid country. Please enter a valid country.");
+            //}
+            //string[] JudetValid = { "Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud", "Botosani", "Braila", "Brasov", "Bucuresti", "Buzau", "Calarasi", "Caras-Severin", "Cluj", "Constanta", "Covasna", "Dambovita", "Dolj", "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita", "Iasi", "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt", "Prahova", "Salaj", "Satu Mare", "Sibiu", "Suceava", "Teleorman", "Timis", "Tulcea", "Vaslui", "Vrancea" };
+
+            //if (string.IsNullOrEmpty(SalaEveniment.Judet))
+            //{
+            //    Console.WriteLine("County name cannot be null or empty. Please enter a valid county name.");
+            //}
+            //else if (JudetValid.Contains(SalaEveniment.Judet, StringComparer.OrdinalIgnoreCase))
+            //{
+            //    // Do something if the county name is valid
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Invalid county name. Please enter a valid county name.");
+            //    // Or you can throw an exception, display an error message, or perform some other action
+            //}
+            //string[] JudetValid = { "Alba", "Arad", "Arges", "Bacau", "Bihor", "Bistrita-Nasaud", "Botosani", "Braila", "Brasov", "Bucuresti", "Buzau", "Calarasi", "Caras-Severin", "Cluj", "Constanta", "Covasna", "Dambovita", "Dolj", "Galati", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomita", "Iasi", "Ilfov", "Maramures", "Mehedinti", "Mures", "Neamt", "Olt", "Prahova", "Salaj", "Satu Mare", "Sibiu", "Suceava", "Teleorman", "Timis", "Tulcea", "Vaslui", "Vrancea" };
+
+
+            //if (JudetValid.Contains(SalaEveniment.Judet, StringComparer.OrdinalIgnoreCase))
+            //{
+
+            //}
+            //else
+            //{
+            //    //    //    // județul introdus nu este valid
+            //    //    //    //MessageBox.Show("Acesta este un mesaj de alertă!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    //    //    //window.alert([message]);
+            //     return RedirectToPage("./Create");
+            //    //Console.WriteLine("Invalid county name. Please enter a valid county name.");
+            //    // static string GetMessage()
+            //    //{
+            //    //    return "Judetul nu e bun";
+            //    //}
+
+
+            //}
+            //var regex = new System.Text.RegularExpressions.Regex(@"^(Alba|Arad|Arges|Bacau|Bihor|Bistrita-Nasaud|Botosani|Braila|Brasov|Bucuresti|Buzau|Calarasi|Caras-Severin|Cluj|Constanta|Covasna|Dambovita|Dolj|Galati|Giurgiu|Gorj|Harghita|Hunedoara|Ialomita|Iasi|Ilfov|Maramures|Mehedinti|Mures|Neamt|Olt|Prahova|Salaj|Satu-Mare|Sibiu|Suceava|Teleorman|Timis|Tulcea|Valcea|Vaslui|Vrancea)$");
+            ////var Judet = "InvalidCounty";
+            //if (regex.IsMatch(SalaEveniment.Judet))
+            //{
+            //    Console.WriteLine("Judetul este valid");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Judetul nu este valid. Vă rugăm să introduceți un județ valid din România.");
+            //}
+
+
+            // Se definește o funcție care verifică dacă județul este valid
+            //function validareJudeț(Judet)
+            //{
+            //    // Lista cu județele valide
+            //    var județeValide = ["Alba", "Arad", "Argeș", "Bacău", "Bihor", "Bistrița-Năsăud", "Botoșani", "Brașov", "Brăila", "Buzău", "Caraș-Severin", "Călărași", "Cluj", "Constanța", "Covasna", "Dâmbovița", "Dolj", "Galați", "Giurgiu", "Gorj", "Harghita", "Hunedoara", "Ialomița", "Iași", "Ilfov", "Maramureș", "Mehedinți", "Mureș", "Neamț", "Olt", "Prahova", "Satu Mare", "Sălaj", "Sibiu", "Suceava", "Teleorman", "Timiș", "Tulcea", "Vaslui", "Vâlcea", "Vrancea"];
+
+            // Se verifică dacă județul este în lista cu județele valide
+            //    if (județeValide.includes(Judet))
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //// Se obține valoarea introdusă în câmpul de județ
+            //var Judet = document.getElementById("camp-Judet").value;
+
+            //// Se verifică dacă județul este valid
+            //if (validareJudeț(Judet))
+            //{
+            //    // Județul este valid, se poate continua cu procesarea formularului
+            //}
+            //else
+            //{
+            //    // Județul nu este valid, se afișează un mesaj de alertă
+            //    alert("Județul introdus nu este un județ valid. Vă rugăm să introduceți un județ din lista cu județele valide.");
+            //}
+
+
+            _context.SalaEveniment.Add(SalaEveniment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
         }
     }
 }
-
 

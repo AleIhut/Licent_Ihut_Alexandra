@@ -30,6 +30,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
                 return NotFound();
             }
 
+            
             var salaeveniment = await _context.SalaEveniment.FirstOrDefaultAsync(m => m.ID == id);
             if (salaeveniment == null)
             {
@@ -47,7 +48,20 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             {
                 return Page();
             }
+            //byte[] bytes = null;
+            //if (SalaEveniment.FisierImagine != null)
+            //{
+            //    using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
+            //    {
+            //        using (BinaryReader br = new BinaryReader(fs))
+            //        {
+            //            bytes = br.ReadBytes((Int32)fs.Length);
+            //        }
 
+            //    }
+            //    SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+            //}
             _context.Attach(SalaEveniment).State = EntityState.Modified;
 
             try
@@ -73,20 +87,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             //    return Page();
             //}
 
-            byte[] bytes = null;
-            if (SalaEveniment.FisierImagine != null)
-            {
-                using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
-                {
-                    using (BinaryReader br = new BinaryReader(fs))
-                    {
-                        bytes = br.ReadBytes((Int32)fs.Length);
-                    }
-
-                }
-                SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
-
-            }
+           
         }
 
              private bool SalaEvenimentExists(int id)

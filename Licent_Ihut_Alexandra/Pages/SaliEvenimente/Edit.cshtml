@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SalaEveniment.FisierImagine" class="control-label"></label>
-                 <img src="data:image/jpg;base64 , @item.Imagine" width="140px" height="140px" onclick="openPopup(item)" />
+                @* <img src="data:image/jpg;base64 , @item.SalaEveniment.FisierImagine" width="140px" height="140px" onclick="openPopup(item)" />*@
                 <input asp-for="SalaEveniment.FisierImagine" class="form-control" />
                 <span asp-validation-for="SalaEveniment.FisierImagine" class="text-danger"></span>
             </div>

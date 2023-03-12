@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230309203445_judetdoi")]
+    partial class judetdoi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,7 +136,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<string>("JudetID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("JudetID1")
                         .HasColumnType("int");
 
                     b.Property<string>("Localitate")
@@ -148,7 +153,7 @@ namespace Licent_Ihut_Alexandra.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("JudetID");
+                    b.HasIndex("JudetID1");
 
                     b.ToTable("SalaEveniment");
                 });
@@ -214,7 +219,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("SaliEvenimente")
-                        .HasForeignKey("JudetID");
+                        .HasForeignKey("JudetID1");
 
                     b.Navigation("Judet");
                 });

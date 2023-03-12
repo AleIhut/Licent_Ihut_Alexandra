@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230309202516_Judete")]
+    partial class Judete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,23 +78,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.ToTable("GenMuzical");
                 });
 
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Nume")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Judet");
-                });
-
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Material", b =>
                 {
                     b.Property<int>("ID")
@@ -134,8 +119,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
+                    b.Property<string>("Judet")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Localitate")
                         .HasColumnType("nvarchar(max)");
@@ -147,8 +132,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("JudetID");
 
                     b.ToTable("SalaEveniment");
                 });
@@ -210,15 +193,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Material");
                 });
 
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEveniment", b =>
-                {
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("SaliEvenimente")
-                        .HasForeignKey("JudetID");
-
-                    b.Navigation("Judet");
-                });
-
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SonorizareGenMuzical", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.GenMuzical", "GenMuzical")
@@ -241,11 +215,6 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.GenMuzical", b =>
                 {
                     b.Navigation("SonorizareGenuriMuzicale");
-                });
-
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
-                {
-                    b.Navigation("SaliEvenimente");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Material", b =>

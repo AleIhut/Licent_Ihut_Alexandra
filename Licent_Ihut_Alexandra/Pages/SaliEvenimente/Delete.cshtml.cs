@@ -29,7 +29,9 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
                 return NotFound();
             }
 
-            var salaeveniment = await _context.SalaEveniment.FirstOrDefaultAsync(m => m.ID == id);
+            var salaeveniment = await _context.SalaEveniment
+                .Include(b => b.Judet)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (salaeveniment == null)
             {

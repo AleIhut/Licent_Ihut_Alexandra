@@ -31,39 +31,38 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             }
 
             
-            var salaeveniment = await _context.SalaEveniment.FirstOrDefaultAsync(m => m.ID == id);
-            if (salaeveniment == null)
+             SalaEveniment = await _context.SalaEveniment
+                .Include(b => b.Judet)
+
+                .FirstOrDefaultAsync(m => m.ID == id);
+              //  .Include(b => b.Judet)
+                
+            if (SalaEveniment == null)
             {
                 return NotFound();
             }
-            SalaEveniment = salaeveniment;
+            
+            SalaEveniment = SalaEveniment;
+            ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+
+            
+
+
+
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync( )
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            //byte[] bytes = null;
-            //if (SalaEveniment.FisierImagine != null)
-            //{
-            //    using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
-            //    {
-            //        using (BinaryReader br = new BinaryReader(fs))
-            //        {
-            //            bytes = br.ReadBytes((Int32)fs.Length);
-            //        }
-
-            //    }
-            //    SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
-
-            //}
+            
             _context.Attach(SalaEveniment).State = EntityState.Modified;
-
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -82,6 +81,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 
             return RedirectToPage("./Index");
 
+
             //if (!ModelState.IsValid)
             //{
             //    return Page();
@@ -97,3 +97,31 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         }
     }
 
+//byte[] bytes = null;
+//if (SalaEveniment.FisierImagine != null)
+//{
+//    using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
+//    {
+//        using (BinaryReader br = new BinaryReader(fs))
+//        {
+//            bytes = br.ReadBytes((Int32)fs.Length);
+//        }
+
+//    }
+//    SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+//}
+//byte[] bytes = null;
+            //if (SalaEveniment.FisierImagine != null)
+            //{
+            //    using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
+            //    {
+            //        using (BinaryReader br = new BinaryReader(fs))
+            //        {
+            //            bytes = br.ReadBytes((Int32)fs.Length);
+            //        }
+
+            //    }
+            //    SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+            //}

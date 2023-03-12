@@ -25,7 +25,10 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         {
             if (_context.SalaEveniment != null)
             {
-                SalaEveniment = await _context.SalaEveniment.ToListAsync();
+                SalaEveniment = await _context.SalaEveniment
+                    .Include(b=>b.Judet)
+                    .ToListAsync();
+
             }
         }
     }

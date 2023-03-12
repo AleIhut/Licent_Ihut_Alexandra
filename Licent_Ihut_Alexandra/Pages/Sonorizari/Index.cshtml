@@ -5,12 +5,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="color: moccasin ;font-style:italic ">Voia bună începe cu muzică bună!</h1>
+<br/>
+<br/>
+<br/>
+
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" style="color: peru;  text-decoration: none"><button  class="btn btn-primary" style="background-color: black ; border-color: black ">Introdu oferta!</a>
 </p>
-<table class="table">
+<table class="table table-dark" style="">
     <thead>
         <tr>
             <th>
@@ -27,7 +31,7 @@
             </th>
              -->
             <th>
-                @Html.DisplayNameFor(model => model.Sonorizare[0].SonorizareGenuriMuzicale)
+                @Html.DisplayNameFor(model => model.Sonorizare[0].SonorizareGenuriMuzicale) 
             </th>
             <th></th>
         </tr>
@@ -40,33 +44,33 @@
                 selectedRow = "table-success";
             }
             <tr class="@selectedRow">
-            <td>
+            <th>
                 @Html.DisplayFor(modelItem => item.Nume)
-            </td>
+            </th>
             @*<td>
                 @Html.DisplayFor(modelItem => item.GenMuzical)
             </td>*@
-            <td>
+            <th>
                 @Html.DisplayFor(modelItem => item.Numar)
-            </td>
+            </th>
            <!-- <td>
                 @Html.DisplayFor(modelItem => item.Descriere)
             </td>
                   -->
-                  <td>
+                  <th>
                       @{
                           foreach (var category in item.SonorizareGenuriMuzicale) 
                           {
                               @category.GenMuzical.ID @: @category.GenMuzical.GenMuzicalNume <br/> 
                           }
                          }
-                          </td>
-            <td>
+                          </th>
+            <th>
 
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Ștergere</a>
+            </th>
         </tr>
 }
     </tbody>

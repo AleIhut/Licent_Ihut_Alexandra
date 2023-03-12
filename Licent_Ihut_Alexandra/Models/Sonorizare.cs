@@ -9,9 +9,10 @@ namespace Licent_Ihut_Alexandra.Models
         public string Nume { get; set; }
         //[Display(Name = "Gen muzical")]
        // public string GenMuzical { get; set; }
-        [Display(Name = "Contact")]
+        [Display(Name = "Detalii de contact")]
         public string Numar { get; set; }
         public string Descriere { get; set; }
+        [Display(Name = "Genuri muzicale interpretate")]
         public ICollection<SonorizareGenMuzical>? SonorizareGenuriMuzicale { get; set; }
 
     }

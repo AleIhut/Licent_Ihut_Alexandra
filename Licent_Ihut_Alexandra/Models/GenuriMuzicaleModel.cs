@@ -10,7 +10,7 @@ namespace Licent_Ihut_Alexandra.Models
         {
             var allGenuriMuzicale = context.GenMuzical;
             var sonorizareGenuriMuzicale = new HashSet<int>(
-                sonorizare.SonorizareGenuriMuzicale.Select(c => c.GenMuzicalID)); //
+                sonorizare.SonorizareGenuriMuzicale.Select(c => c.GenMuzicalID)); 
             GenMuzicalAsignatList = new List<GenMuzicalAsignat>(); 
             foreach (var cat in allGenuriMuzicale)
             {
@@ -31,7 +31,7 @@ namespace Licent_Ihut_Alexandra.Models
                     if (sonorizareGenuriMuzicale.Contains(cat.ID))
                     {
                         SonorizareGenMuzical courseToRemove = sonorizareToUpdate.SonorizareGenuriMuzicale
-            .SingleOrDefault(i => i.GenMuzicalID == cat.ID); context.Remove(courseToRemove);
+            .SingleOrDefault(c => c.GenMuzicalID == cat.ID); context.Remove(courseToRemove);
                     }
                 }
             }

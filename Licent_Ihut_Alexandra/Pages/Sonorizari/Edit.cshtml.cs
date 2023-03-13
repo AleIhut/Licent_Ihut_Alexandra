@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace Licent_Ihut_Alexandra.Pages.Sonorizari
 {
@@ -30,18 +31,18 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
                 return NotFound();
             }
 
-            var sonorizare =  await _context.Sonorizare
+            Sonorizare =  await _context.Sonorizare
                 .Include(b => b.SonorizareGenuriMuzicale).ThenInclude(b => b.GenMuzical)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (sonorizare == null)
+            if (Sonorizare == null)
             {
                 return NotFound();
             }
             //apelam PopulateAssignedCategoryData pentru o obtine informatiile necesare checkbox-
             //urilor folosind clasa AssignedCategoryData
             PopulateGenMuzicalAsignat(_context, Sonorizare);
-            Sonorizare = sonorizare;
+           Sonorizare = Sonorizare;
             return Page();
         }
 
@@ -64,7 +65,7 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
             if (await TryUpdateModelAsync<Sonorizare>(
             sonorizareToUpdate,
             "Sonorizare",
-            i => i.Nume, i => i.Numar,
+            i=> i.ID , i=>i.Nume,  i => i.Numar,
             i => i.Descriere ))
             {
                 UpdateSonorizareGenuriMuzicale(_context, selectedGenuriMuzicale, sonorizareToUpdate);
@@ -103,9 +104,9 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
             //return RedirectToPage("./Index");
         }
 
-        private bool SonorizareExists(int id)
-        {
-          return _context.Sonorizare.Any(e => e.ID == id);
-        }
+        //private bool SonorizareExists(int id)
+        //{
+        //  return _context.Sonorizare.Any(e => e.ID == id);
+        //}
     }
 }

@@ -28,32 +28,32 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
 
         [BindProperty]
        
-        public string Figurina { get; set; }
-        public string[] Figurine = new[] { "Da", "Nu" };
-        public Prajitura Prajitura { get; set; }
         
+        public Prajitura Prajitura { get; set; }
+        //public string Figurina { get; set; }
+        //public string[] Figurine = new[] { "Da", "Nu" };
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-              {
-                  return Page();
-              }
-            //byte[] bytes = null;
-            //if (Prajitura.FisierImagine != null)
-            //{
-            //    using (Stream fs = Prajitura.FisierImagine.OpenReadStream())
-            //    {
-            //        using (BinaryReader br = new BinaryReader(fs))
-            //        {
-            //            bytes = br.ReadBytes((Int32)fs.Length);
-            //        }
+            //if (!ModelState.IsValid)
+            //  {
+            //      return Page();
+            //  }
+            byte[] bytes = null;
+            if (Prajitura.FisierImagine != null)
+            {
+                using (Stream fs = Prajitura.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
 
-            //    }
-            //    Prajitura.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+               }
+                Prajitura.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
 
-            //}
+            }
 
             _context.Prajitura.Add(Prajitura);
             await _context.SaveChangesAsync();

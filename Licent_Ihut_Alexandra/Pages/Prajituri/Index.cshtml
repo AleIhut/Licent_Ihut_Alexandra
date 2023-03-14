@@ -56,7 +56,8 @@
                 @Html.DisplayFor(modelItem => item.Localitate.NumeLocalitate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Imagine)
+               @* @Html.DisplayFor(modelItem => item.Imagine)*@
+                    <img src="data:image/jpg;base64 , @item.Imagine" width="140px" height="140px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Creme)

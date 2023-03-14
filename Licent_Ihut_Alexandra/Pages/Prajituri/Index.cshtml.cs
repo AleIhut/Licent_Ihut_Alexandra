@@ -20,7 +20,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
         }
 
         [BindProperty]
-        //public string Figurina { get; set; }
+       // public string Figurina { get; set; }
         //public string[] Figurine = new[] { "Da", "Nu" };
         public IList<Prajitura> Prajitura { get;set; } = default!;
 

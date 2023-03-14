@@ -53,12 +53,12 @@
                 <span asp-validation-for="Prajitura.Feluri" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prajitura.Figurine" class="control-label"></label>
-                <input asp-for="Prajitura.Figurine" class="form-control" />
-              @*@foreach (var figurina in Model.Figurine)
+                <label asp-for="Prajitura.Figurine" class="control-label">Se realizeaza figurine?</label>
+               @* <input asp-for="Prajitura.Figurine" class="form-control" />*@
+              @foreach (var figurina in Model.Figurine)
                 {
                     <input type="radio" asp-for="Figurina" value="@figurina"/>@figurina<br/>
-                }*@
+                }
                @* <input type="submit"/>*@
                 <span asp-validation-for="Prajitura.Figurine" class="text-danger"></span>
             </div>

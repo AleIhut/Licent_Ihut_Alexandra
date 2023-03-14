@@ -1,0 +1,86 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Prajituri.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Judet.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Localitate.NumeLocalitate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Imagine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Creme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Feluri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Figurine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prajitura[0].Descriere)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Prajitura) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Judet.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localitate.NumeLocalitate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feluri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Figurine)
+
+          
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriere)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

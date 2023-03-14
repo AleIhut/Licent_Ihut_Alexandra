@@ -23,5 +23,15 @@ namespace Licent_Ihut_Alexandra.Data
         public DbSet<Licent_Ihut_Alexandra.Models.Material> Material { get; set; }
 
         public DbSet<Licent_Ihut_Alexandra.Models.Decoratiune> Decoratiune { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.Fotograf> Fotograf { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.Artist> Artist { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.Hostes> Hostes { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.MaterialPirotehnic> MaterialPirotehnic { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.Prajitura> Prajitura { get; set; }
     }
 }

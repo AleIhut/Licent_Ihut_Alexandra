@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230314084314_prajicrud")]
+    partial class prajicrud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -504,11 +506,11 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("Prajituri")
+                        .WithMany()
                         .HasForeignKey("JudetID");
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany("Prajituri")
+                        .WithMany()
                         .HasForeignKey("LocalitateID");
 
                     b.Navigation("Judet");
@@ -557,15 +559,11 @@ namespace Licent_Ihut_Alexandra.Migrations
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
                 {
-                    b.Navigation("Prajituri");
-
                     b.Navigation("SaliEvenimente");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Localitate", b =>
                 {
-                    b.Navigation("Prajituri");
-
                     b.Navigation("SaliEvenimente");
                 });
 

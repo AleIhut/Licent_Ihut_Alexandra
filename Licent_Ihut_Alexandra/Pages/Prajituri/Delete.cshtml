@@ -1,0 +1,76 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Prajituri.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Prajitura</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Nume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Judet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Judet.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Localitate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Localitate.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Imagine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Imagine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Creme)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Creme)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Feluri)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Feluri)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Figurine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Figurine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Descriere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Descriere)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Prajitura.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

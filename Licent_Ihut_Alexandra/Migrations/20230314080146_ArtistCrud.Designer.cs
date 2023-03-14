@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230314080146_ArtistCrud")]
+    partial class ArtistCrud
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,50 +163,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.ToTable("GenMuzical");
                 });
 
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Hostes", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Culori")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Descriere")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Imagine")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocalitateID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
-
-                    b.ToTable("Hostes");
-                });
-
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
                 {
                     b.Property<int>("ID")
@@ -254,89 +212,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Material");
-                });
-
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.MaterialPirotehnic", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Descriere")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocalitateID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
-
-                    b.ToTable("MaterialPirotehnic");
-                });
-
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Creme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Descriere")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<string>("Feluri")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Figurine")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Imagine")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("JudetID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocalitateID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("JudetID");
-
-                    b.HasIndex("LocalitateID");
-
-                    b.ToTable("Prajitura");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEveniment", b =>
@@ -471,51 +346,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Localitate");
                 });
 
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Hostes", b =>
-                {
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany()
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany()
-                        .HasForeignKey("LocalitateID");
-
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
-                });
-
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.MaterialPirotehnic", b =>
-                {
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany()
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany()
-                        .HasForeignKey("LocalitateID");
-
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
-                });
-
-            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
-                {
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("Prajituri")
-                        .HasForeignKey("JudetID");
-
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany("Prajituri")
-                        .HasForeignKey("LocalitateID");
-
-                    b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
-                });
-
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEveniment", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
@@ -557,15 +387,11 @@ namespace Licent_Ihut_Alexandra.Migrations
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
                 {
-                    b.Navigation("Prajituri");
-
                     b.Navigation("SaliEvenimente");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Localitate", b =>
                 {
-                    b.Navigation("Prajituri");
-
                     b.Navigation("SaliEvenimente");
                 });
 

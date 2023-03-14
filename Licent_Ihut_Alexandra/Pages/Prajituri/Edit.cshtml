@@ -1,0 +1,75 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Prajituri.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Prajitura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Prajitura.ID" />
+            <div class="form-group">
+                <label asp-for="Prajitura.Nume" class="control-label"></label>
+                <input asp-for="Prajitura.Nume" class="form-control" />
+                <span asp-validation-for="Prajitura.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.JudetID" class="control-label"></label>
+                <select asp-for="Prajitura.JudetID" class="form-control" asp-items="ViewBag.JudetID"></select>
+                <span asp-validation-for="Prajitura.JudetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.LocalitateID" class="control-label"></label>
+                <select asp-for="Prajitura.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
+                <span asp-validation-for="Prajitura.LocalitateID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Imagine" class="control-label"></label>
+                <input asp-for="Prajitura.Imagine" class="form-control" />
+                <span asp-validation-for="Prajitura.Imagine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Creme" class="control-label"></label>
+                <input asp-for="Prajitura.Creme" class="form-control" />
+                <span asp-validation-for="Prajitura.Creme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Feluri" class="control-label"></label>
+                <input asp-for="Prajitura.Feluri" class="form-control" />
+                <span asp-validation-for="Prajitura.Feluri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Figurine" class="control-label"></label>
+                <input asp-for="Prajitura.Figurine" class="form-control" />
+                <span asp-validation-for="Prajitura.Figurine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Telefon" class="control-label"></label>
+                <input asp-for="Prajitura.Telefon" class="form-control" />
+                <span asp-validation-for="Prajitura.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Descriere" class="control-label"></label>
+                <input asp-for="Prajitura.Descriere" class="form-control" />
+                <span asp-validation-for="Prajitura.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

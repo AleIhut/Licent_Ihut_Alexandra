@@ -1,0 +1,88 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Prajituri.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Prajitura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Nume" class="control-label"></label>
+                <input asp-for="Prajitura.Nume" class="form-control" />
+                <span asp-validation-for="Prajitura.Nume" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="Prajitura.JudetID" class="control-label"></label>
+                <select asp-for="Prajitura.JudetID" class ="form-control" asp-items="ViewBag.JudetID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.LocalitateID" class="control-label"></label>
+                <select asp-for="Prajitura.LocalitateID" class ="form-control" asp-items="ViewBag.LocalitateID"></select>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Prajitura.JudetID" class="control-label">Județ</label>
+                <select asp-for="Prajitura.JudetID" class="form-control" asp-items="ViewBag.JudetID"> </select>
+                @*<input asp-for="SalaEveniment.Judet" class="form-control"  />*@
+                <span asp-validation-for="Prajitura.JudetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Localitate" class="control-label"></label>
+                <input asp-for="Prajitura.Localitate" class="form-control" />
+                <span asp-validation-for="Prajitura.Localitate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Imagine" class="control-label"></label>
+                <input asp-for="Prajitura.Imagine" class="form-control" />
+                <span asp-validation-for="Prajitura.Imagine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Creme" class="control-label"></label>
+                <input asp-for="Prajitura.Creme" class="form-control" />
+                <span asp-validation-for="Prajitura.Creme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Feluri" class="control-label"></label>
+                <input asp-for="Prajitura.Feluri" class="form-control" />
+                <span asp-validation-for="Prajitura.Feluri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Figurine" class="control-label"></label>
+                @*<input asp-for="Prajitura.Figurine" class="form-control" />*@
+              @foreach (var figurina in Model.Figurine)
+                {
+                    <input type="radio" asp-for="Figurina" value="@figurina"/>@figurina<br/>
+                }
+               @* <input type="submit"/>*@
+                <span asp-validation-for="Prajitura.Figurine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Telefon" class="control-label"></label>
+                <input asp-for="Prajitura.Telefon" class="form-control" />
+                <span asp-validation-for="Prajitura.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prajitura.Descriere" class="control-label"></label>
+                <input asp-for="Prajitura.Descriere" class="form-control" />
+                <span asp-validation-for="Prajitura.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

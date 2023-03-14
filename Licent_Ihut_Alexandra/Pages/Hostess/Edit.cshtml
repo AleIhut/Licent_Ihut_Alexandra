@@ -1,0 +1,70 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Hostess.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Hostes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Hostes.ID" />
+            <div class="form-group">
+                <label asp-for="Hostes.Nume" class="control-label"></label>
+                <input asp-for="Hostes.Nume" class="form-control" />
+                <span asp-validation-for="Hostes.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.JudetID" class="control-label"></label>
+                <select asp-for="Hostes.JudetID" class="form-control" asp-items="ViewBag.JudetID"></select>
+                <span asp-validation-for="Hostes.JudetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.LocalitateID" class="control-label"></label>
+                <select asp-for="Hostes.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
+                <span asp-validation-for="Hostes.LocalitateID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.Imagine" class="control-label"></label>
+                <input asp-for="Hostes.Imagine" class="form-control" />
+                <span asp-validation-for="Hostes.Imagine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.Culori" class="control-label"></label>
+                <input asp-for="Hostes.Culori" class="form-control" />
+                <span asp-validation-for="Hostes.Culori" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.Telefon" class="control-label"></label>
+                <input asp-for="Hostes.Telefon" class="form-control" />
+                <span asp-validation-for="Hostes.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.Email" class="control-label"></label>
+                <input asp-for="Hostes.Email" class="form-control" />
+                <span asp-validation-for="Hostes.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hostes.Descriere" class="control-label"></label>
+                <input asp-for="Hostes.Descriere" class="form-control" />
+                <span asp-validation-for="Hostes.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

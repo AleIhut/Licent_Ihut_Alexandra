@@ -1,0 +1,62 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Fotografi.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Fotograf</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fotograf.Nume" class="control-label"></label>
+                <input asp-for="Fotograf.Nume" class="form-control" />
+                <span asp-validation-for="Fotograf.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.JudetID" class="control-label"></label>
+                <select asp-for="Fotograf.JudetID" class ="form-control" asp-items="ViewBag.JudetID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.LocalitateID" class="control-label"></label>
+                <select asp-for="Fotograf.LocalitateID" class ="form-control" asp-items="ViewBag.LocalitateID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.Imagine" class="control-label"></label>
+                <input asp-for="Fotograf.Imagine" class="form-control" />
+                <span asp-validation-for="Fotograf.Imagine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.Telefon" class="control-label"></label>
+                <input asp-for="Fotograf.Telefon" class="form-control" />
+                <span asp-validation-for="Fotograf.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.Email" class="control-label"></label>
+                <input asp-for="Fotograf.Email" class="form-control" />
+                <span asp-validation-for="Fotograf.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotograf.Descriere" class="control-label"></label>
+                <input asp-for="Fotograf.Descriere" class="form-control" />
+                <span asp-validation-for="Fotograf.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

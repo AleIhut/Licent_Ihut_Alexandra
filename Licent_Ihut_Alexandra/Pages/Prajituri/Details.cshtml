@@ -1,0 +1,73 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Prajituri.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Prajitura</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Nume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Judet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Judet.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Localitate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Localitate.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Imagine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Imagine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Creme)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Creme)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Feluri)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Feluri)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Figurine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Figurine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prajitura.Descriere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prajitura.Descriere)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Prajitura?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

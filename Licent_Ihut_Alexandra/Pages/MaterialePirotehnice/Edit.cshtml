@@ -1,0 +1,60 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.MaterialePirotehnice.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>MaterialPirotehnic</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaterialPirotehnic.ID" />
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.Nume" class="control-label"></label>
+                <input asp-for="MaterialPirotehnic.Nume" class="form-control" />
+                <span asp-validation-for="MaterialPirotehnic.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.JudetID" class="control-label"></label>
+                <select asp-for="MaterialPirotehnic.JudetID" class="form-control" asp-items="ViewBag.JudetID"></select>
+                <span asp-validation-for="MaterialPirotehnic.JudetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.LocalitateID" class="control-label"></label>
+                <select asp-for="MaterialPirotehnic.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
+                <span asp-validation-for="MaterialPirotehnic.LocalitateID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.Telefon" class="control-label"></label>
+                <input asp-for="MaterialPirotehnic.Telefon" class="form-control" />
+                <span asp-validation-for="MaterialPirotehnic.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.Email" class="control-label"></label>
+                <input asp-for="MaterialPirotehnic.Email" class="form-control" />
+                <span asp-validation-for="MaterialPirotehnic.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialPirotehnic.Descriere" class="control-label"></label>
+                <input asp-for="MaterialPirotehnic.Descriere" class="form-control" />
+                <span asp-validation-for="MaterialPirotehnic.Descriere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

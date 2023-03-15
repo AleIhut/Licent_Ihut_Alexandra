@@ -28,7 +28,10 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
                 return NotFound();
             }
 
-            var fotograf = await _context.Fotograf.FirstOrDefaultAsync(m => m.ID == id);
+            var fotograf = await _context.Fotograf
+                 .Include(b => b.Judet)
+                 .Include(b => b.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (fotograf == null)
             {
                 return NotFound();

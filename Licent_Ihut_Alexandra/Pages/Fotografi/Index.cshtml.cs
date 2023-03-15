@@ -27,7 +27,8 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
             {
                 Fotograf = await _context.Fotograf
                 .Include(f => f.Judet)
-                .Include(f => f.Localitate).ToListAsync();
+                .Include(f => f.Localitate)
+                .ToListAsync();
             }
         }
     }

@@ -29,9 +29,9 @@
               
             </div>
             <div class="form-group">
-                <label asp-for="SalaEveniment.Localitate" class="control-label"></label>
-                <input asp-for="SalaEveniment.Localitate" class="form-control" />
-                <span asp-validation-for="SalaEveniment.Localitate" class="text-danger"></span>
+                <label asp-for="SalaEveniment.LocalitateID" class="control-label">Localitate</label>
+                <input asp-for="SalaEveniment.LocalitateID" class="form-control" asp-items="ViewBag.JudetID" />
+                <span asp-validation-for="SalaEveniment.LocalitateID" class="text-danger"></span>
             </div>
            @* <div class="form-group">
                 <label asp-for="SalaEveniment.FisierImagine" class="control-label"></label>

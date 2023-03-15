@@ -29,6 +29,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
             if (_context.Prajitura != null)
             {
                 Prajitura = await _context.Prajitura
+                //.Include(p => p.Figurine)
                 .Include(p => p.Judet)
                .Include(p => p.Localitate)
                 .ToListAsync();

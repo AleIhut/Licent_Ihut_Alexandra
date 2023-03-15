@@ -13,7 +13,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
     public class CreateModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
+ 
         public CreateModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
         {
             _context = context;
@@ -22,14 +22,16 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
         public IActionResult OnGet()
         {
         ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-       // ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "Nume");
+       ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
             return Page();
         }
+      
+        [BindProperty]
+ 
+        public string Figurina { get; set; }
+        public string[] Figurine = new[] { "da", "nu" };
 
         [BindProperty]
-        public string Figurina { get; set; }
-        public string[] Figurine = new[] { "Da", "Nu" };
-
         public Prajitura Prajitura { get; set; }
         //public string Figurina { get; set; }
         //public string[] Figurine = new[] { "Da", "Nu" };

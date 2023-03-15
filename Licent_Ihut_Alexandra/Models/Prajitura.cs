@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Licent_Ihut_Alexandra.Models
 {
@@ -32,7 +33,11 @@ namespace Licent_Ihut_Alexandra.Models
         public string? Feluri { get; set; }
 
         [Display(Name = "Se realizează figurine?")]
-        public string? Figurine { get; set; }
+        // public string? Figurine { get; set; }
+        [BindProperty]
+
+        public string Figurina { get; set; }
+        public string[] Figurine = new[] { "da", "nu" };
 
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string? Telefon { get; set; }

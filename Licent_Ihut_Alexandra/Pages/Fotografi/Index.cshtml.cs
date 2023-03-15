@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Licent_Ihut_Alexandra.Pages.Fotografi
 {
@@ -19,17 +20,39 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
             _context = context;
         }
 
-        public IList<Fotograf> Fotograf { get;set; } = default!;
+        public IList<Fotograf> Fotografi { get; set; } = default!;
 
-        public async Task OnGetAsync()
+       
+
+        public async Task OnGetAsync(/*string sortOrder*/)
         {
+            Fotografi = new List<Fotograf>();
+            //JudetSort = String.IsNullOrEmpty(sortOrder) ? "judet_desc" : "";
             if (_context.Fotograf != null)
             {
-                Fotograf = await _context.Fotograf
-                .Include(f => f.Judet)
-                .Include(f => f.Localitate)
-                .ToListAsync();
+                //var searchString = Request.Form["searchString"];
+
+                Fotografi = await _context.Fotograf
+               .Include(f => f.Judet)
+               .Include(f => f.Localitate)
+             //  .Where(x => x.Nume.Contains(searchString))
+               .ToListAsync();
             }
+            
+           
+            //switch (sortOrder)
+            //{
+            //    case "judet_desc":
+            //       Fotograf = Fotograf.OrderByDescending(s => s.Judet);
+            //        break;
+            //}
+        }
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            Fotografi = await _context.Fotograf
+                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString) ).ToListAsync();
         }
     }
 }

@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230315195123_restrictiejudet")]
+    partial class restrictiejudet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JudetID")
+                    b.Property<int?>("JudetID")
                         .HasColumnType("int");
 
                     b.Property<int?>("LocalitateID")
@@ -184,7 +186,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JudetID")
+                    b.Property<int?>("JudetID")
                         .HasColumnType("int");
 
                     b.Property<int?>("LocalitateID")
@@ -324,7 +326,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JudetID")
+                    b.Property<int?>("JudetID")
                         .HasColumnType("int");
 
                     b.Property<int?>("LocalitateID")
@@ -369,7 +371,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JudetID")
+                    b.Property<int?>("JudetID")
                         .HasColumnType("int");
 
                     b.Property<int?>("LocalitateID")
@@ -443,9 +445,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany()
-                        .HasForeignKey("JudetID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JudetID");
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany()
@@ -486,9 +486,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany()
-                        .HasForeignKey("JudetID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JudetID");
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany()
@@ -527,9 +525,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("Prajituri")
-                        .HasForeignKey("JudetID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JudetID");
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("Prajituri")
@@ -544,9 +540,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("SaliEvenimente")
-                        .HasForeignKey("JudetID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JudetID");
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("SaliEvenimente")

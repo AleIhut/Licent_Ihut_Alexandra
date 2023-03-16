@@ -33,7 +33,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             
              SalaEveniment = await _context.SalaEveniment
                 .Include(b => b.Judet)
-
+                .Include(b => b.Localitate)
                 .FirstOrDefaultAsync(m => m.ID == id);
               //  .Include(b => b.Judet)
                 
@@ -44,8 +44,8 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             
             SalaEveniment = SalaEveniment;
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+            ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
 
-            
 
 
 
@@ -56,10 +56,25 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync( )
         {
-            if (!ModelState.IsValid)
+
+            byte[] bytes = null;
+            if (SalaEveniment.FisierImagine != null)
             {
-                return Page();
+                using (Stream fs = SalaEveniment.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                SalaEveniment.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
             
             _context.Attach(SalaEveniment).State = EntityState.Modified;
             

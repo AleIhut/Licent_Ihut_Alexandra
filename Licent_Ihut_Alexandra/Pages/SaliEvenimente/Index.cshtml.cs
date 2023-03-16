@@ -23,13 +23,23 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 
         public async Task OnGetAsync()
         {
+            SalaEveniment = new List<SalaEveniment>();
             if (_context.SalaEveniment != null)
             {
+
                 SalaEveniment = await _context.SalaEveniment
                     .Include(b=>b.Judet)
+                     .Include(b => b.Localitate)
                     .ToListAsync();
 
             }
+        }
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            SalaEveniment = await _context.SalaEveniment
+                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }
 }

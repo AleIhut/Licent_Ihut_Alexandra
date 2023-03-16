@@ -27,6 +27,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         public IActionResult OnGet()
         {
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+            ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
             return Page();
         }
 

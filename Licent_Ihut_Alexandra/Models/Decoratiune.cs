@@ -9,7 +9,7 @@
         public string Email { get; set; }
        public int? MaterialID { get; set; } //cheia straina materie prima
         public Material? Material { get; set; }
-        public string Descriere { get; set; }
+        public string? Descriere { get; set; }
         
        
     }

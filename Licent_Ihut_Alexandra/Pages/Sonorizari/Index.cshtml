@@ -18,7 +18,12 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Sonorizare[0].Nume)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NumeSort" style="text-decoration: none; color: white">
+                    @Html.DisplayNameFor(model => model.Sonorizare[0].Nume)  ⇧
+                </a>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NumeSortDesc" style="text-decoration: none; color: white">
+                    @Html.DisplayNameFor(model => model.Sonorizare[0].Nume) ⇩
+                </a>
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Sonorizare[0].GenMuzical)

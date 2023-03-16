@@ -33,5 +33,9 @@ namespace Licent_Ihut_Alexandra.Data
         public DbSet<Licent_Ihut_Alexandra.Models.MaterialPirotehnic> MaterialPirotehnic { get; set; }
 
         public DbSet<Licent_Ihut_Alexandra.Models.Prajitura> Prajitura { get; set; }
+
+        public DbSet<Licent_Ihut_Alexandra.Models.Judet> Judet { get; set; }
+        public DbSet<Licent_Ihut_Alexandra.Models.Localitate> Localitate { get; set; }
+
     }
 }

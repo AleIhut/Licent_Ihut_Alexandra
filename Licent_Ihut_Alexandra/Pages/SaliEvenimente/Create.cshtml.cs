@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using NuGet.Protocol.Plugins;
 using System.Reflection.Metadata;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 {
@@ -24,10 +24,21 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             _context = context;
         }
 
+        
+
         public IActionResult OnGet()
         {
+            var localitati = _context.Localitate
+                .Select(x => new
+                {
+                    x.ID,
+                    localitateNume = x.Judet.Nume + "-" + x.NumeLocalitate
+                })
+                .OrderBy(x => x.localitateNume);
+
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-            ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+
+            ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
             return Page();
         }
 

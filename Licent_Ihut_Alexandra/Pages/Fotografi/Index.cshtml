@@ -74,10 +74,10 @@
     <form method="post" class="searchForm">
         <input type="text" name="searchString" />
        @* <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Căutare" class="btn btn-primary" />*@
-        <div><a  type="submit" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Caută</a> </div>
+        <div><a  type="submit" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Caută</a> 
         @*<input type="submit" value="Search" />*@
       @*  <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" asp-page="./Index" value="Înapoi" class="btn btn-primary" />*@
-        <div><a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a> </div>
+        <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a> </div>
     </form>
             <div class="row" >
         <div style="display: flex ; flex-wrap: wrap;" class="row-cols-sm-3">
@@ -95,7 +95,7 @@
                     </span>
                         @Html.DisplayNameFor(model => model.Fotografi[0].Nume)
                         @Html.DisplayFor(modelItem => item.Nume) 
-                        <br></br>
+                        <p> </p>
                         @Html.DisplayNameFor(model => model.Fotografi[0].Judet)
                     @Html.DisplayFor(modelItem => item.Judet.Nume)
             </div>

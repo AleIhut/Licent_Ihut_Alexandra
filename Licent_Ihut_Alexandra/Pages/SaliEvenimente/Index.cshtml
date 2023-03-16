@@ -61,12 +61,12 @@
 
                     <div  style="width:33%;  display:inline-block; padding:4px">
                     <span stlye="padding-bottom:4px;">
-                        <img src="data:image/jpg;base64 , @item.Imagine" width="140px" height="140px" onclick="openPopup(item)" />
+                        <img src="data:image/jpg;base64 , @item.Imagine" width="140px" height="140px" />
                     </span>
                @* @Html.DisplayFor(modelItem => item.Nume)*@
                         @Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
                         @Html.DisplayFor(modelItem => item.Nume)
-                        <br></br>
+                        <p> </p>
                         @Html.DisplayNameFor(model => model.SalaEveniment[0].Judet)
                         @Html.DisplayFor(modelItem => item.Judet.Nume)
             </div>

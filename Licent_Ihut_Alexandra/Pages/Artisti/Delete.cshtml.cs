@@ -29,7 +29,10 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
                 return NotFound();
             }
 
-            var artist = await _context.Artist.FirstOrDefaultAsync(m => m.ID == id);
+            var artist = await _context.Artist
+                .Include(b => b.Judet)
+                .Include(b => b.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (artist == null)
             {

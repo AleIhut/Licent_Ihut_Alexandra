@@ -27,8 +27,17 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
             {
                 Artist = await _context.Artist
                 .Include(a => a.Judet)
-                .Include(a => a.Localitate).ToListAsync();
+                .Include(a => a.Localitate)
+                .ToListAsync();
             }
         }
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            Artist = await _context.Artist
+                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
+        }
     }
+
 }

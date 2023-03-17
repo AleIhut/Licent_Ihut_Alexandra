@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230316175836_ValidariDecor")]
+    partial class ValidariDecor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,8 @@ namespace Licent_Ihut_Alexandra.Migrations
 
                     b.Property<string>("CategorieMomentArtistic")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Descriere")
                         .HasMaxLength(300)
@@ -56,7 +59,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

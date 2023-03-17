@@ -21,8 +21,8 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
 
         public IActionResult OnGet()
         {
-        ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "ID");
-        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "ID");
+        ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
             return Page();
         }
 
@@ -33,10 +33,24 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (Artist.FisierImagine != null)
             {
-                return Page();
+                using (Stream fs = Artist.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Artist.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //  {
+            //      return Page();
+            //  }
 
             _context.Artist.Add(Artist);
             await _context.SaveChangesAsync();

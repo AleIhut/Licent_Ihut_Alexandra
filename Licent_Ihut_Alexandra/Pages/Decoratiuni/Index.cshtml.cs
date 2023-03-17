@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 {
@@ -20,14 +21,27 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
         }
 
         public IList<Decoratiune> Decoratiune { get;set; } = default!;
+       
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync( )
         {
+            
+
+           
             if (_context.Decoratiune != null)
             {
                 Decoratiune = await _context.Decoratiune
-                .Include(d => d.Material).ToListAsync();
+                .Include(d => d.Material)
+                .ToListAsync();
             }
+          
+            }
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            Decoratiune = await _context.Decoratiune
+                .Where(x => x.Companie.Contains(searchString) ).ToListAsync();
         }
     }
 }

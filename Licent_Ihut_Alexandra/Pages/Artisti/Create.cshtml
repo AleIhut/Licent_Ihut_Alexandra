@@ -5,13 +5,13 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 style="color: moccasin ;font-style:italic ">Promovează aici serviciile tale!</h1>
 
-<h4>Artist</h4>
+<h4 style=" color: black">Crează-i profilul chiar acum!</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Artist.Nume" class="control-label"></label>
@@ -19,17 +19,19 @@
                 <span asp-validation-for="Artist.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Artist.JudetID" class="control-label"></label>
+                <label asp-for="Artist.JudetID" class="control-label">Județ</label>
                 <select asp-for="Artist.JudetID" class ="form-control" asp-items="ViewBag.JudetID"></select>
+                <span asp-validation-for="Artist.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Artist.LocalitateID" class="control-label"></label>
+                <label asp-for="Artist.LocalitateID" class="control-label">Localitate</label>
                 <select asp-for="Artist.LocalitateID" class ="form-control" asp-items="ViewBag.LocalitateID"></select>
+                <span asp-validation-for="Artist.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Artist.Imagine" class="control-label"></label>
-                <input asp-for="Artist.Imagine" class="form-control" />
-                <span asp-validation-for="Artist.Imagine" class="text-danger"></span>
+                <label asp-for="Artist.FisierImagine" class="control-label">Imagine</label>
+                <input asp-for="Artist.FisierImagine" class="form-control" />
+                <span asp-validation-for="Artist.FisierImagine" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Artist.CategorieMomentArtistic" class="control-label"></label>
@@ -52,14 +54,14 @@
                 <span asp-validation-for="Artist.Descriere" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Crează " class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
 </div>
 
 @section Scripts {

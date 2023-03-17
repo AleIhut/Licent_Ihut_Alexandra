@@ -30,14 +30,17 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
                 return NotFound();
             }
 
-            var artist =  await _context.Artist.FirstOrDefaultAsync(m => m.ID == id);
+            var artist =  await _context.Artist
+                .Include(x => x.Judet)
+                .Include(x => x.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (artist == null)
             {
                 return NotFound();
             }
             Artist = artist;
-           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "ID");
-           ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "ID");
+           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+           ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
             return Page();
         }
 
@@ -45,10 +48,24 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (Artist.FisierImagine != null)
             {
-                return Page();
+                using (Stream fs = Artist.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Artist.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             _context.Attach(Artist).State = EntityState.Modified;
 

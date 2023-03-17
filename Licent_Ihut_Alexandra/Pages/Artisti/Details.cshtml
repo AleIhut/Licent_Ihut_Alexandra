@@ -5,37 +5,43 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="color: moccasin ;font-style:italic ">Detalii: </h1>
 
 <div>
-    <h4>Artist</h4>
+    
     <hr />
-    <dl class="row">
+    <dl class="row"  > 
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Nume)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Artist.Nume)
         </dd>
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Judet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Artist.Judet.ID)
+            @Html.DisplayFor(model => model.Artist.Judet.Nume)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Localitate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Artist.Localitate.ID)
-        </dd>
-        <dt class="col-sm-2">
+            @Html.DisplayFor(model => model.Artist.Localitate.NumeLocalitate)
+        </dd>*@
+       @* <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Imagine)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Artist.Imagine)
+        </dd>*@
+        <dt style="width:33%;  display:inline-block; padding:4px" class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Artist.Imagine)
+        </dt>
+        <dd stlye="padding-bottom:4px;" class="col-sm-10">     
+                    <img src="data:image/jpg;base64 " width="50px" height="50px" />
         </dd>
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.CategorieMomentArtistic)
         </dt>
         <dd class="col-sm-10">
@@ -52,7 +58,7 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Artist.Email)
-        </dd>
+        </dd>*@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Descriere)
         </dt>
@@ -62,6 +68,7 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Artist?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Artist?.ID" style="color: peru;  text-decoration: none "><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+    <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+   
 </div>

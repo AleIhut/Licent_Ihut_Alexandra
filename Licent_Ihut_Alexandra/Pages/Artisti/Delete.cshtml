@@ -5,11 +5,11 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1 style="color: moccasin ;font-style:italic ">Ștergere</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 style=" color: black">Ești sigur că dorești să ștergi această înregistrare?</h3>
 <div>
-    <h4>Artist</h4>
+   
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -22,20 +22,20 @@
             @Html.DisplayNameFor(model => model.Artist.Judet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Artist.Judet.ID)
+            @Html.DisplayFor(model => model.Artist.Judet.Nume)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Localitate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Artist.Localitate.ID)
+            @Html.DisplayFor(model => model.Artist.Localitate.NumeLocalitate)
         </dd>
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.Imagine)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Artist.Imagine)
-        </dd>
+        </dd>*@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist.CategorieMomentArtistic)
         </dt>
@@ -64,7 +64,8 @@
     
     <form method="post">
         <input type="hidden" asp-for="Artist.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Ștergere" class="btn btn-danger" />
+        <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+
     </form>
 </div>

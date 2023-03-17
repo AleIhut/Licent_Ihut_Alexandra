@@ -5,10 +5,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="color: moccasin ;font-style:italic ">Detalii: </h1>
 
 <div>
-    <h4>Decoratiune</h4>
+   
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -17,7 +17,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Decoratiune.Companie)
         </dd>
-        <dt class="col-sm-2">
+  @*      <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Decoratiune.Locație)
         </dt>
         <dd class="col-sm-10">
@@ -40,7 +40,7 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Decoratiune.Material.Tip)
-        </dd>
+        </dd>*@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Decoratiune.Descriere)
         </dt>
@@ -50,6 +50,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Decoratiune?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Decoratiune?.ID" style="color: peru;  text-decoration: none "><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+    <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
 </div>

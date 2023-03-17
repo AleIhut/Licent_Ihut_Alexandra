@@ -29,7 +29,9 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
                 return NotFound();
             }
 
-            var decoratiune = await _context.Decoratiune.FirstOrDefaultAsync(m => m.ID == id);
+            var decoratiune = await _context.Decoratiune
+                 .Include(x => x.Material)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (decoratiune == null)
             {

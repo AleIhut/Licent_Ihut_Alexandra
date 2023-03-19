@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Prajitura.LocalitateID" class="control-label">Localitate</label>
-                 <select asp-for="Prajitura.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID.Judet"> </select>
+                 <select asp-for="Prajitura.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"> </select>
                 @*<input asp-for="Prajitura.Localitate" class="form-control" />*@
                 <span asp-validation-for="Prajitura.LocalitateID" class="text-danger"></span>
             </div>
@@ -56,9 +56,9 @@
             <div class="form-group">
                 <label asp-for="Prajitura.Figurine" class="control-label">Se realizeaza figurine?</label>
                 @*<input asp-for="Prajitura.Figurine" class="form-control" />*@
-              @foreach (var figurina in Model.Figurine)
+            @foreach (var figurina in Model.Figurine)
                 {
-                    <input type="radio" asp-for="Figurina" value="@figurina"/>@figurina<br/>
+                    <input type="radio" asp-for="Prajitura.Figurina" value="@figurina"/>@figurina<br/>
                 }
                 @*<asp: RadioButtonList ID="rblLocations" ="server" RepeatDirection="Horizontal">
                     <asp: ListItem>DC</asp: ListItem>

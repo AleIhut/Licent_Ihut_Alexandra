@@ -37,7 +37,7 @@ namespace Licent_Ihut_Alexandra.Models
         [BindProperty]
 
         public string Figurina { get; set; }
-        public string[] Figurine = new[] { "da", "nu" };
+       public string[] Figurine = new[] { "da", "nu" };
 
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string Telefon { get; set; }

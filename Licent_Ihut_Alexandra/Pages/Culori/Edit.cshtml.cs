@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 
-namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
+namespace Licent_Ihut_Alexandra.Pages.Culori
 {
     public class EditModel : PageModel
     {
@@ -21,25 +21,21 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
         }
 
         [BindProperty]
-        public MaterialPirotehnic MaterialPirotehnic { get; set; } = default!;
+        public Culoare Culoare { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.MaterialPirotehnic == null)
+            if (id == null || _context.Culoare == null)
             {
                 return NotFound();
             }
 
-            var materialpirotehnic =  await _context.MaterialPirotehnic
-                .Include(x => x.Judet)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (materialpirotehnic == null)
+            var culoare =  await _context.Culoare.FirstOrDefaultAsync(m => m.ID == id);
+            if (culoare == null)
             {
                 return NotFound();
             }
-            MaterialPirotehnic = materialpirotehnic;
-           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-         
+            Culoare = culoare;
             return Page();
         }
 
@@ -52,7 +48,7 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
                 return Page();
             }
 
-            _context.Attach(MaterialPirotehnic).State = EntityState.Modified;
+            _context.Attach(Culoare).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +56,7 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MaterialPirotehnicExists(MaterialPirotehnic.ID))
+                if (!CuloareExists(Culoare.ID))
                 {
                     return NotFound();
                 }
@@ -73,9 +69,9 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
             return RedirectToPage("./Index");
         }
 
-        private bool MaterialPirotehnicExists(int id)
+        private bool CuloareExists(int id)
         {
-          return _context.MaterialPirotehnic.Any(e => e.ID == id);
+          return (_context.Culoare?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

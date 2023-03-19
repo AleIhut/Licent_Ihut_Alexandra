@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230319074803_artificii")]
+    partial class artificii
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -581,7 +583,7 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.MaterialPirotehnic", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("MaterialePirotehnice")
+                        .WithMany()
                         .HasForeignKey("JudetID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -666,8 +668,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Hostess");
 
                     b.Navigation("Localitati");
-
-                    b.Navigation("MaterialePirotehnice");
 
                     b.Navigation("Prajituri");
 

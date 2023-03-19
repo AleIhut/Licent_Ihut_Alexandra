@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 
-namespace Licent_Ihut_Alexandra.Pages.Hostess
+namespace Licent_Ihut_Alexandra.Pages.Culori
 {
     public class IndexModel : PageModel
     {
@@ -19,25 +19,14 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             _context = context;
         }
 
-        public IList<Hostes> Hostes { get;set; } = default!;
+        public IList<Culoare> Culoare { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Hostes = new List<Hostes>();
-            if (_context.Hostes != null)
+            if (_context.Culoare != null)
             {
-                Hostes = await _context.Hostes
-                .Include(x => x.Judet)
-                .Include(x => x.Localitate)
-                .ToListAsync();
+                Culoare = await _context.Culoare.ToListAsync();
             }
-        }
-        public async Task OnPostAsync()
-        {
-            var searchString = Request.Form["searchString"];
-
-            Hostes = await _context.Hostes
-                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
                 }
             }
 
-
+           
             _context.Sonorizare.Add(Sonorizare);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");

@@ -10,7 +10,7 @@ using Licent_Ihut_Alexandra.Models;
 
 namespace Licent_Ihut_Alexandra.Pages.Hostess
 {
-    public class CreateModel : PageModel
+    public class CreateModel : CuloriRochitaPageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
 
@@ -21,8 +21,12 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
         public IActionResult OnGet()
         {
-        ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "ID");
-        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "ID");
+         ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+            var hostes = new Hostes(); 
+            hostes.HostesCulori = new List<HostesCuloare>();
+            PopulateAssignedCuloareData(_context, hostes);
+        
             return Page();
         }
 
@@ -31,17 +35,58 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedCulori)
         {
-          if (!ModelState.IsValid)
+            byte[] bytes = null;
+            if (Hostes.FisierImagine != null)
             {
-                return Page();
+                using (Stream fs = Hostes.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Hostes.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+
+            //_context.Hostes.Add(Hostes);
+            //await _context.SaveChangesAsync();
+
+            //return RedirectToPage("./Index");
+
+            var newHostes =  Hostes;
+            if (selectedCulori != null)
+            {
+                newHostes.HostesCulori = new List<HostesCuloare>();
+                foreach (var cat in selectedCulori)
+                {
+                    var catToAdd = new HostesCuloare
+                    {
+                        CuloareID = int.Parse(cat)
+                    };
+                    newHostes.HostesCulori.Add(catToAdd);
+                }
             }
 
-            _context.Hostes.Add(Hostes);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+           // if (await TryUpdateModelAsync<Hostes>(
+           //newHostes,
+           //"Hostes",
+           //i => i.ID, i => i.Nume, i => i.Judet,
+           //i => i.Localitate, i => i.Imagine, i => i.Telefon, i => i.Email, i => i.Descriere))
+           // {
+                _context.Hostes.Add(newHostes);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            
+            PopulateAssignedCuloareData(_context, newHostes);
+            return Page();
         }
     }
 }

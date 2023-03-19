@@ -15,7 +15,7 @@ namespace Licent_Ihut_Alexandra.Models
 
         // public string? Localitate { get; set; }
         public int LocalitateID { get; set; }
-        public Localitate? Localitate { get; set; }
+        public Localitate Localitate { get; set; }
         public string Imagine { get; set; }
 
         [NotMapped]
@@ -24,7 +24,8 @@ namespace Licent_Ihut_Alexandra.Models
 
 
         [Display(Name = "Culori disponibile pentru ținute")]
-        public string Culori { get; set; }
+        //public string Culori { get; set; }
+        public ICollection<HostesCuloare>? HostesCulori { get; set; }
 
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string Telefon { get; set; }

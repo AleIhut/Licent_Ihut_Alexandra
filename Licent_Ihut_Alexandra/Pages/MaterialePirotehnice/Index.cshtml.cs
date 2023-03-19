@@ -26,8 +26,10 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
             if (_context.MaterialPirotehnic != null)
             {
                 MaterialPirotehnic = await _context.MaterialPirotehnic
-                .Include(m => m.Judet)
-                .Include(m => m.Localitate).ToListAsync();
+                    .Include(x => x.Judet)
+                    .ToListAsync();
+
+
             }
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 
-namespace Licent_Ihut_Alexandra.Pages.Hostess
+namespace Licent_Ihut_Alexandra.Pages.Culori
 {
     public class DeleteModel : PageModel
     {
@@ -20,43 +20,40 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
         }
 
         [BindProperty]
-      public Hostes Hostes { get; set; }
+      public Culoare Culoare { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Hostes == null)
+            if (id == null || _context.Culoare == null)
             {
                 return NotFound();
             }
 
-            var hostes = await _context.Hostes
-                .Include(b => b.Judet)
-                .Include(b => b.Localitate)
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var culoare = await _context.Culoare.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (hostes == null)
+            if (culoare == null)
             {
                 return NotFound();
             }
             else 
             {
-                Hostes = hostes;
+                Culoare = culoare;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Hostes == null)
+            if (id == null || _context.Culoare == null)
             {
                 return NotFound();
             }
-            var hostes = await _context.Hostes.FindAsync(id);
+            var culoare = await _context.Culoare.FindAsync(id);
 
-            if (hostes != null)
+            if (culoare != null)
             {
-                Hostes = hostes;
-                _context.Hostes.Remove(Hostes);
+                Culoare = culoare;
+                _context.Culoare.Remove(Culoare);
                 await _context.SaveChangesAsync();
             }
 

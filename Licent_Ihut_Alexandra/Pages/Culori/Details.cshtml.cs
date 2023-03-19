@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 
-namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
+namespace Licent_Ihut_Alexandra.Pages.Culori
 {
     public class DetailsModel : PageModel
     {
@@ -19,25 +19,23 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
             _context = context;
         }
 
-      public MaterialPirotehnic MaterialPirotehnic { get; set; }
+      public Culoare Culoare { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.MaterialPirotehnic == null)
+            if (id == null || _context.Culoare == null)
             {
                 return NotFound();
             }
 
-            var materialpirotehnic = await _context.MaterialPirotehnic
-                .Include(x => x.Judet)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (materialpirotehnic == null)
+            var culoare = await _context.Culoare.FirstOrDefaultAsync(m => m.ID == id);
+            if (culoare == null)
             {
                 return NotFound();
             }
             else 
             {
-                MaterialPirotehnic = materialpirotehnic;
+                Culoare = culoare;
             }
             return Page();
         }

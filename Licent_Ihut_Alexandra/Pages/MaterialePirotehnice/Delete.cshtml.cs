@@ -29,7 +29,9 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
                 return NotFound();
             }
 
-            var materialpirotehnic = await _context.MaterialPirotehnic.FirstOrDefaultAsync(m => m.ID == id);
+            var materialpirotehnic = await _context.MaterialPirotehnic
+                .Include(x => x.Judet)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (materialpirotehnic == null)
             {

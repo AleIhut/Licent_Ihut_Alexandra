@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using System.Net;
 
 namespace Licent_Ihut_Alexandra.Pages.Hostess
 {
@@ -21,6 +22,10 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
       public Hostes Hostes { get; set; }
 
+        public HostesData HostesD { get; set; }
+        public int HostesID { get; set; }
+        public int CuloareID { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Hostes == null)
@@ -28,16 +33,38 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
                 return NotFound();
             }
 
-            var hostes = await _context.Hostes.FirstOrDefaultAsync(m => m.ID == id);
+            var hostes = await _context.Hostes
+                .Include(x => x.Judet)
+                .Include(x => x.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (hostes == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Hostes = hostes;
             }
             return Page();
         }
+
+        //public async Task OnGetAsync(int? id, int? culoarerID)
+        //{
+        //    HostesD = new HostesData();
+        //    HostesD.Hostess = await _context.Hostes
+        //        .Include(x => x.Judet)
+        //        .Include(x => x.Localitate)
+        //        .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
+        //        .AsNoTracking()
+        //        .ToListAsync();
+        //    if (id != null)
+        //    {
+        //        HostesID = id.Value;
+        //        Hostes hostes = HostesD.Hostess
+        //            .Where(i => i.ID == id.Value).Single();
+        //        HostesD.Culori = hostes.HostesCulori
+        //            .Select(s => s.Category); }
+        //}
     }
+
 }

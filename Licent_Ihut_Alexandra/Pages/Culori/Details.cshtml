@@ -1,0 +1,25 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.Culori.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Culoare</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Culoare.CuloareName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Culoare.CuloareName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Culoare?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

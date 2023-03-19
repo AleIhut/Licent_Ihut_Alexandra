@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230318121233_HostesJudet")]
+    partial class HostesJudet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -317,22 +319,26 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JudetID")
+                    b.Property<int?>("JudetID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefon")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("JudetID");
+
+                    b.HasIndex("LocalitateID");
 
                     b.ToTable("MaterialPirotehnic");
                 });
@@ -581,12 +587,16 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.MaterialPirotehnic", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("MaterialePirotehnice")
-                        .HasForeignKey("JudetID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("JudetID");
+
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
+                        .WithMany()
+                        .HasForeignKey("LocalitateID");
 
                     b.Navigation("Judet");
+
+                    b.Navigation("Localitate");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
@@ -666,8 +676,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Hostess");
 
                     b.Navigation("Localitati");
-
-                    b.Navigation("MaterialePirotehnice");
 
                     b.Navigation("Prajituri");
 

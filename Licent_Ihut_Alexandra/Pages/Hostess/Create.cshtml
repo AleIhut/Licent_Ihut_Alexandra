@@ -5,13 +5,14 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Hostes</h4>
+<h1 style="color: moccasin ;font-style:italic ">Promovează aici afacerea!</h1>
+
+<h4 style=" color: black">Crează profilul chiar acum!</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Hostes.Nume" class="control-label"></label>
@@ -19,22 +20,47 @@
                 <span asp-validation-for="Hostes.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hostes.JudetID" class="control-label"></label>
+                <label asp-for="Hostes.JudetID" class="control-label">Județ</label>
                 <select asp-for="Hostes.JudetID" class ="form-control" asp-items="ViewBag.JudetID"></select>
+                <span asp-validation-for="Hostes.JudetID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hostes.LocalitateID" class="control-label"></label>
+                <label asp-for="Hostes.LocalitateID" class="control-label">Localitate</label>
                 <select asp-for="Hostes.LocalitateID" class ="form-control" asp-items="ViewBag.LocalitateID"></select>
+                <span asp-validation-for="Hostes.LocalitateID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hostes.Imagine" class="control-label"></label>
-                <input asp-for="Hostes.Imagine" class="form-control" />
-                <span asp-validation-for="Hostes.Imagine" class="text-danger"></span>
+                <label asp-for="Hostes.FisierImagine" class="control-label"></label>
+                <input asp-for="Hostes.FisierImagine" class="form-control" />
+                <span asp-validation-for="Hostes.FisierImagine" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Hostes.Culori" class="control-label"></label>
                 <input asp-for="Hostes.Culori" class="form-control" />
                 <span asp-validation-for="Hostes.Culori" class="text-danger"></span>
+            </div>*@
+             <div class="form-group">
+            <div class="table">
+                <table>
+                    <tr>
+                        @{
+                        int cnt = 0;
+                        foreach (var cat in Model.AssignedCuloareDataList)
+                        {
+                            if (cnt++ % 3 == 0)
+                        {
+                        @:</tr><tr>
+                    }
+                    @:<td>
+                    <input type="checkbox" name="selectedCulori" value="@cat.CuloareID"
+                    @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) />
+                     @cat.Name
+                    @:</td>
+                    }
+                    @:</tr>
+                    }
+                    </table>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Hostes.Telefon" class="control-label"></label>
@@ -52,14 +78,14 @@
                 <span asp-validation-for="Hostes.Descriere" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+               <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Crează o nouă înregistrare" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index"  style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
 </div>
 
 @section Scripts {

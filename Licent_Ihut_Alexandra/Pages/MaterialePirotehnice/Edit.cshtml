@@ -5,9 +5,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1 style="color: moccasin ;font-style:italic ">Aici poți să îți editezi propria ta afacere.  </h1>
 
-<h4>MaterialPirotehnic</h4>
+<h4 style="color: black"> Materiale pirotehnice </h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,14 +20,9 @@
                 <span asp-validation-for="MaterialPirotehnic.Nume" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaterialPirotehnic.JudetID" class="control-label"></label>
+                <label asp-for="MaterialPirotehnic.JudetID" class="control-label">Județ</label>
                 <select asp-for="MaterialPirotehnic.JudetID" class="form-control" asp-items="ViewBag.JudetID"></select>
                 <span asp-validation-for="MaterialPirotehnic.JudetID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaterialPirotehnic.LocalitateID" class="control-label"></label>
-                <select asp-for="MaterialPirotehnic.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
-                <span asp-validation-for="MaterialPirotehnic.LocalitateID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaterialPirotehnic.Telefon" class="control-label"></label>
@@ -45,14 +40,15 @@
                 <span asp-validation-for="MaterialPirotehnic.Descriere" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Salvează" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+  
 </div>
 
 @section Scripts {

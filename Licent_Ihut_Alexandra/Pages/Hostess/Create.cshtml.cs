@@ -21,12 +21,14 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
         public IActionResult OnGet()
         {
-         ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+       
             var hostes = new Hostes(); 
             hostes.HostesCulori = new List<HostesCuloare>();
             PopulateAssignedCuloareData(_context, hostes);
-        
+
+          ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+        ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+
             return Page();
         }
 

@@ -33,6 +33,14 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
 
 
             }
+
+        }
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            MaterialPirotehnic = await _context.MaterialPirotehnic
+                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }
 }

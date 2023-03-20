@@ -13,7 +13,7 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
     public class CreateModel : GenuriMuzicaleModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-        private Sonorizare newSonorizare;
+        //private Sonorizare newSonorizare;
 
         public CreateModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
         {
@@ -33,17 +33,17 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
 
         public async Task<IActionResult> OnPostAsync(string[] selectedGenuriMuzicale)
         {
-            var newBook = Sonorizare;
+            var newSonorizare = Sonorizare;
             if (selectedGenuriMuzicale != null)
             {
-                newBook.SonorizareGenuriMuzicale = new List<SonorizareGenMuzical>();
+                newSonorizare.SonorizareGenuriMuzicale = new List<SonorizareGenMuzical>();
                 foreach (var cat in selectedGenuriMuzicale)
                 {
                     var catToAdd = new SonorizareGenMuzical
                     {
                         GenMuzicalID = int.Parse(cat)
                     };
-                    newBook.SonorizareGenuriMuzicale.Add(catToAdd);
+                    newSonorizare.SonorizareGenuriMuzicale.Add(catToAdd);
                 }
             }
 

@@ -23,6 +23,7 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
 
         public async Task OnGetAsync()
         {
+            Artist = new List<Artist>();
             if (_context.Artist != null)
             {
                 Artist = await _context.Artist

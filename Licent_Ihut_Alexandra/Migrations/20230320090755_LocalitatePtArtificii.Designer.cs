@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230320090755_LocalitatePtArtificii")]
+    partial class LocalitatePtArtificii
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,7 +324,7 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int>("LocalitateID")
+                    b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -591,15 +593,11 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", null)
                         .WithMany("MaterialePirotehnice")
-                        .HasForeignKey("LocalitateID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocalitateID");
 
                     b.Navigation("Judet");
-
-                    b.Navigation("Localitate");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>

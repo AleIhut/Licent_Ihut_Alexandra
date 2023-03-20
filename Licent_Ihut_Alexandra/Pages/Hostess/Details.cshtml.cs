@@ -54,7 +54,7 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
         //    HostesD.Hostess = await _context.Hostes
         //        .Include(x => x.Judet)
         //        .Include(x => x.Localitate)
-        //        .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
+        //        .Include(x => x.HostesCulori).ThenInclude(x => x.Culoare)
         //        .AsNoTracking()
         //        .ToListAsync();
         //    if (id != null)
@@ -63,7 +63,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
         //        Hostes hostes = HostesD.Hostess
         //            .Where(i => i.ID == id.Value).Single();
         //        HostesD.Culori = hostes.HostesCulori
-        //            .Select(s => s.Category); }
+        //            .Select(s => s.Culoare);
+        //    }
         //}
     }
 

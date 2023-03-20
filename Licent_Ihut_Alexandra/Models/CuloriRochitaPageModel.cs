@@ -8,7 +8,8 @@ namespace Licent_Ihut_Alexandra.Models
         public List<AssignedCuloareData> AssignedCuloareDataList;
         public void PopulateAssignedCuloareData(Licent_Ihut_AlexandraContext context, Hostes hostes)
         {
-            var allCulori = context.Culoare; var hostesCulori = new HashSet<int>(hostes.HostesCulori.Select(c => c.CuloareID));
+            var allCulori = context.Culoare;
+            var hostesCulori = new HashSet<int>(hostes.HostesCulori.Select(c => c.CuloareID));
             AssignedCuloareDataList = new List<AssignedCuloareData>();
             foreach (var cat in allCulori) 
             { AssignedCuloareDataList.Add(new AssignedCuloareData
@@ -16,10 +17,14 @@ namespace Licent_Ihut_Alexandra.Models
         }
         public void UpdateHostesCulori(Licent_Ihut_AlexandraContext context, string[] selectedCulori, Hostes hostesToUpdate)
         {
-            if (selectedCulori == null) { hostesToUpdate.HostesCulori = new List<HostesCuloare>(); return; }
-            var selectedCuloriHS = new HashSet<string>(selectedCulori); var hostesCulori = new HashSet<int>(hostesToUpdate.HostesCulori.Select(c => c.Culoare.ID)); foreach (var cat in context.Culoare)
+            if (selectedCulori == null) { hostesToUpdate.HostesCulori = new List<HostesCuloare>(); 
+                return; }
+            var selectedCuloriHS = new HashSet<string>(selectedCulori); var hostesCulori = new HashSet<int>(hostesToUpdate.HostesCulori.Select(c => c.Culoare.ID)); 
+            foreach (var cat in context.Culoare)
             {
-                if (selectedCuloriHS.Contains(cat.ID.ToString())) { if (!hostesCulori.Contains(cat.ID)) { hostesToUpdate.HostesCulori.Add(new HostesCuloare { HostesID = hostesToUpdate.ID, CuloareID = cat.ID }); } }
+                if (selectedCuloriHS.Contains(cat.ID.ToString())) { if (!hostesCulori.Contains(cat.ID))
+                    {
+                        hostesToUpdate.HostesCulori.Add(new HostesCuloare { HostesID = hostesToUpdate.ID, CuloareID = cat.ID }); } }
                 else
                 {
                     if (hostesCulori.Contains(cat.ID))

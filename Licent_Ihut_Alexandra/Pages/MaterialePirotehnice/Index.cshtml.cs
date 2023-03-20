@@ -23,10 +23,12 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
 
         public async Task OnGetAsync()
         {
+            MaterialPirotehnic = new List<MaterialPirotehnic>();
             if (_context.MaterialPirotehnic != null)
             {
                 MaterialPirotehnic = await _context.MaterialPirotehnic
                     .Include(x => x.Judet)
+                    .Include(x => x.Localitate)
                     .ToListAsync();
 
 

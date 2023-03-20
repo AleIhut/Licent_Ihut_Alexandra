@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 
+
 namespace Licent_Ihut_Alexandra.Pages.Hostess
 {
     public class EditModel : CuloriRochitaPageModel
@@ -30,13 +31,13 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
                 return NotFound();
             }
 
-            var hostes = await _context.Hostes
+             Hostes = await _context.Hostes
                 .Include(b => b.Judet)
                 .Include(b => b.Localitate)
                 .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (hostes == null)
+            if (Hostes == null)
             {
                 return NotFound();
             }
@@ -72,8 +73,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             //    return NotFound();
             //}
             var hostesToUpdate = await _context.Hostes
-                .Include(x => x.Judet)
-                .Include(x => x.Localitate)
+                //.Include(i => i.Judet)
+                //.Include(i => i.Localitate)
             .Include(i => i.HostesCulori)
             .ThenInclude(i => i.Culoare)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -84,8 +85,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             if (await TryUpdateModelAsync<Hostes>(
             hostesToUpdate,
             "Hostes",
-            i => i.ID, i => i.Nume, i => i.Judet,
-            i => i.Localitate, i => i.Imagine, i => i.Telefon, i => i.Email, i => i.Descriere))
+            i => i.ID, i => i.Nume, i => i.JudetID,
+            i => i.LocalitateID, i => i.Imagine, i => i.Telefon, i => i.Email, i => i.Descriere))
             {
                 UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
                 await _context.SaveChangesAsync();

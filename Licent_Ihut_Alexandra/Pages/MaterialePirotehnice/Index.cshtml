@@ -17,7 +17,10 @@
                 @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Nume)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Judet.Nume)
+                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Judet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Localitate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Telefon)
@@ -40,6 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Judet.Nume)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localitate.NumeLocalitate)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefon)
             </td>

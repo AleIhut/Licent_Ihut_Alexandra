@@ -32,6 +32,7 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
 
             var materialpirotehnic =  await _context.MaterialPirotehnic
                 .Include(x => x.Judet)
+                .Include(x => x.Localitate)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (materialpirotehnic == null)
             {
@@ -39,7 +40,8 @@ namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
             }
             MaterialPirotehnic = materialpirotehnic;
            ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-         
+            ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+
             return Page();
         }
 

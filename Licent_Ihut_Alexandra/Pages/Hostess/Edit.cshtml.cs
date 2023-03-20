@@ -32,8 +32,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             }
 
              Hostes = await _context.Hostes
-                .Include(b => b.Judet)
-                .Include(b => b.Localitate)
+                //.Include(b => b.Judet)
+                //.Include(b => b.Localitate)
                 .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);

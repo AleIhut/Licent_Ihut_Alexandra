@@ -36,8 +36,8 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
                 return NotFound();
             }
             Prajitura = prajitura;
-           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "ID");
-           ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "ID");
+           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+           ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
             return Page();
         }
 
@@ -45,11 +45,24 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+            byte[] bytes = null;
+            if (Prajitura.FisierImagine != null)
             {
-                return Page();
-            }
+                using (Stream fs = Prajitura.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
 
+                }
+                Prajitura.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+            }
             _context.Attach(Prajitura).State = EntityState.Modified;
 
             try

@@ -26,6 +26,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
 
         public async Task OnGetAsync()
         {
+            Prajitura = new List<Prajitura>();
             if (_context.Prajitura != null)
             {
                 Prajitura = await _context.Prajitura
@@ -35,6 +36,12 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
                 .ToListAsync();
             }
         }
-       
+        public async Task OnPostAsync()
+        {
+            var searchString = Request.Form["searchString"];
+
+            Prajitura = await _context.Prajitura
+                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
+        }
     }
 }

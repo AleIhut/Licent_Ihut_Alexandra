@@ -5,10 +5,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="color: moccasin ;font-style:italic ">Detalii: </h1>
 
 <div>
-    <h4>Prajitura</h4>
+  
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -21,20 +21,20 @@
             @Html.DisplayNameFor(model => model.Prajitura.Judet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Prajitura.Judet.ID)
+            @Html.DisplayFor(model => model.Prajitura.Judet.Nume)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Prajitura.Localitate)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Prajitura.Localitate.ID)
+            @Html.DisplayFor(model => model.Prajitura.Localitate.NumeLocalitate)
         </dd>
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Prajitura.Imagine)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Prajitura.Imagine)
-        </dd>
+        </dd>*@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Prajitura.Creme)
         </dt>
@@ -68,6 +68,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Prajitura?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Prajitura?.ID" style="color: peru;  text-decoration: none "><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+    <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
 </div>

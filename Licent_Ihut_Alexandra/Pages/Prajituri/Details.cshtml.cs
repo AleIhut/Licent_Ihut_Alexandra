@@ -28,7 +28,10 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
                 return NotFound();
             }
 
-            var prajitura = await _context.Prajitura.FirstOrDefaultAsync(m => m.ID == id);
+            var prajitura = await _context.Prajitura
+                .Include(b => b.Judet)
+                .Include(b => b.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (prajitura == null)
             {
                 return NotFound();

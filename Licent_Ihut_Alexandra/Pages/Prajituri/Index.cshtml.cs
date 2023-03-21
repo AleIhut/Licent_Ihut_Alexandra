@@ -40,7 +40,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
         {
             var searchString = Request.Form["searchString"];
 
-            Prajitura = await _context.Prajitura
+            Prajitura = await _context.Prajitura.Include(b => b.Judet)
                 .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }

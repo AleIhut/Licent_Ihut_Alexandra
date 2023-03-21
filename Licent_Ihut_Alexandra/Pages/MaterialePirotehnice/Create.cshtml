@@ -21,13 +21,13 @@
             <div class="form-group">
                 <label asp-for="MaterialPirotehnic.JudetID" class="control-label">Județ</label>
                 <select asp-for="MaterialPirotehnic.JudetID" class ="form-control" asp-items="ViewBag.JudetID"></select>
-             @*   <span asp-validation-for="MaterialPirotehnic.JudetID" class="text-danger"></span>*@
+                <span asp-validation-for="MaterialPirotehnic.JudetID" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="MaterialPirotehnic.LocalitateID" class="control-label">Localitate</label>
+                <label asp-for="MaterialPirotehnic.LocalitateID" class="control-label">Adresa</label>
                 <select asp-for="MaterialPirotehnic.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
-               @* <span asp-validation-for="MaterialPirotehnic.LocalitateID" class="text-danger"></span>*@
+                <span asp-validation-for="MaterialPirotehnic.LocalitateID" class="text-danger"></span>
             </div>
           
             <div class="form-group">

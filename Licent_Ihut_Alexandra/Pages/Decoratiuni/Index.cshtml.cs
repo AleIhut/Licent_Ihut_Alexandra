@@ -41,6 +41,7 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
             var searchString = Request.Form["searchString"];
 
             Decoratiune = await _context.Decoratiune
+               
                 .Where(x => x.Companie.Contains(searchString) ).ToListAsync();
         }
     }

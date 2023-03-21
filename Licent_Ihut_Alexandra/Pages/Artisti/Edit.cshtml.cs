@@ -39,8 +39,17 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
                 return NotFound();
             }
             Artist = artist;
-           ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-           ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+            var localitati = _context.Localitate
+                 .Select(x => new
+                 {
+                     x.ID,
+                     localitateNume = x.Judet.Nume + "-" + x.NumeLocalitate
+                 })
+                 .OrderBy(x => x.localitateNume);
+
+            ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
+
+            ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
             return Page();
         }
 

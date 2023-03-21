@@ -37,6 +37,7 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
             var searchString = Request.Form["searchString"];
 
             Artist = await _context.Artist
+                .Include(b => b.Judet)
                 .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }

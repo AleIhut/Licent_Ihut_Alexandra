@@ -39,6 +39,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             var searchString = Request.Form["searchString"];
 
             SalaEveniment = await _context.SalaEveniment
+                 .Include(b => b.Judet)
                 .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
         }
     }

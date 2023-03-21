@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.Extensions.Hosting;
 
 
 namespace Licent_Ihut_Alexandra.Pages.Hostess
@@ -31,9 +32,10 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
                 return NotFound();
             }
 
-             Hostes = await _context.Hostes
-                //.Include(b => b.Judet)
-                //.Include(b => b.Localitate)
+             //var hostes = await _context.Hostes
+              Hostes = await _context.Hostes
+                .Include(b => b.Judet)
+                .Include(b => b.Localitate)
                 .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
@@ -44,8 +46,17 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
             PopulateAssignedCuloareData(_context, Hostes);
             Hostes = Hostes;
+            var localitati = _context.Localitate
+                .Select(x => new
+                {
+                    x.ID,
+                    localitateNume = x.Judet.Nume + "-" + x.NumeLocalitate
+                })
+                .OrderBy(x => x.localitateNume);
+
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
-            ViewData["LocalitateID"] = new SelectList(_context.Set<Localitate>(), "ID", "NumeLocalitate");
+
+            ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
             return Page();
         }
 
@@ -73,8 +84,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             //    return NotFound();
             //}
             var hostesToUpdate = await _context.Hostes
-                //.Include(i => i.Judet)
-                //.Include(i => i.Localitate)
+                .Include(i => i.Judet)
+               .Include(i => i.Localitate)
             .Include(i => i.HostesCulori)
             .ThenInclude(i => i.Culoare)
             .FirstOrDefaultAsync(s => s.ID == id);
@@ -85,8 +96,8 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             if (await TryUpdateModelAsync<Hostes>(
             hostesToUpdate,
             "Hostes",
-            i => i.ID, i => i.Nume, i => i.JudetID,
-            i => i.LocalitateID, i => i.Imagine, i => i.Telefon, i => i.Email, i => i.Descriere))
+            i => i.ID, i => i.Nume, i => i.Judet,
+            i => i.Localitate, i => i.Imagine, i => i.Telefon, i => i.Email, i => i.Descriere))
             {
                 UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
                 await _context.SaveChangesAsync();

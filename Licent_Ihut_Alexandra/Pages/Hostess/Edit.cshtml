@@ -10,7 +10,7 @@
 <h4 style="color: black"> Hostess </h4>
 <hr />
 <div class="row">
-    <div class="col-md-4" enctype="multipart/form-data">
+    <div class="col-md-4" >
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Hostes.ID" />
@@ -25,7 +25,7 @@
                 <span asp-validation-for="Hostes.JudetID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hostes.LocalitateID" class="control-label">Localitate</label>
+                <label asp-for="Hostes.LocalitateID" class="control-label">Adresă</label>
                 <select asp-for="Hostes.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
                 <span asp-validation-for="Hostes.LocalitateID" class="text-danger"></span>
             </div>

@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230321112429_artificiimaria")]
+    partial class artificiimaria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,10 +47,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -142,10 +144,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -202,10 +204,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -319,10 +321,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -369,10 +371,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<string>("Imagine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -417,10 +419,10 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JudetID")
+                    b.Property<int>("JudetID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("LocalitateID")
+                    b.Property<int>("LocalitateID")
                         .HasColumnType("int");
 
                     b.Property<string>("Nume")
@@ -492,12 +494,16 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Artist", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("Artisti")
-                        .HasForeignKey("JudetID");
+                        .WithMany()
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany("Artisti")
-                        .HasForeignKey("LocalitateID");
+                        .WithMany()
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -516,12 +522,16 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Fotograf", b =>
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
-                        .WithMany("Fotografi")
-                        .HasForeignKey("JudetID");
+                        .WithMany()
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
-                        .WithMany("Fotografi")
-                        .HasForeignKey("LocalitateID");
+                        .WithMany()
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -532,11 +542,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("Hostess")
-                        .HasForeignKey("JudetID");
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("Hostess")
-                        .HasForeignKey("LocalitateID");
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -575,11 +589,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("MaterialePirotehnice")
-                        .HasForeignKey("JudetID");
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("MaterialePirotehnice")
-                        .HasForeignKey("LocalitateID");
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -590,11 +608,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("Prajituri")
-                        .HasForeignKey("JudetID");
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("Prajituri")
-                        .HasForeignKey("LocalitateID");
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -605,11 +627,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                 {
                     b.HasOne("Licent_Ihut_Alexandra.Models.Judet", "Judet")
                         .WithMany("SaliEvenimente")
-                        .HasForeignKey("JudetID");
+                        .HasForeignKey("JudetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Licent_Ihut_Alexandra.Models.Localitate", "Localitate")
                         .WithMany("SaliEvenimente")
-                        .HasForeignKey("LocalitateID");
+                        .HasForeignKey("LocalitateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Judet");
 
@@ -652,10 +678,6 @@ namespace Licent_Ihut_Alexandra.Migrations
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Judet", b =>
                 {
-                    b.Navigation("Artisti");
-
-                    b.Navigation("Fotografi");
-
                     b.Navigation("Hostess");
 
                     b.Navigation("Localitati");
@@ -669,10 +691,6 @@ namespace Licent_Ihut_Alexandra.Migrations
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Localitate", b =>
                 {
-                    b.Navigation("Artisti");
-
-                    b.Navigation("Fotografi");
-
                     b.Navigation("Hostess");
 
                     b.Navigation("MaterialePirotehnice");

@@ -12,12 +12,12 @@ namespace Licent_Ihut_Alexandra.Models
         public string Nume { get; set; }
         //  [RegularExpression(@"(Alba|Arad|Arges|Bacau|Bihor|Bistrita-Nasaud|Botosani|Braila|Brasov|Bucuresti|Buzau|Calarasi|Caras-Severin|Cluj|Constanta|Covasna|Dambovita|Dolj|Galati|Giurgiu|Gorj|Harghita|Hunedoara|Ialomita|Iasi|Ilfov|Maramures|Mehedinti|Mures|Neamt|Olt|Prahova|Salaj|Satu-Mare|Sibiu|Suceava|Teleorman|Timis|Tulcea|Valcea|Vaslui|Vrancea)$", ErrorMessage = "Județ invalid!Trebuie să fie de forma 'Bihor'.")]
 
-        public int JudetID { get; set; }
-        public Judet Judet { get; set; }
+        public int? JudetID { get; set; }
+        public Judet? Judet { get; set; }
 
         // public string? Localitate { get; set; }
-        public int LocalitateID { get; set; }
-        public Localitate Localitate { get; set; }
+        public int? LocalitateID { get; set; }
+        public Localitate? Localitate { get; set; }
         public string? Imagine { get; set; }
 
         [NotMapped]

@@ -9,10 +9,10 @@ namespace Licent_Ihut_Alexandra.Models
         [Display(Name = "Firmă prestatoare")]
         public string Nume { get; set; }
 
-        public int JudetID { get; set; }
-        public Judet Judet { get; set; }
-        public int LocalitateID { get; set; }
-        public Localitate Localitate { get; set; }
+        public int? JudetID { get; set; }
+        public Judet? Judet { get; set; }
+        public int? LocalitateID { get; set; }
+        public Localitate? Localitate { get; set; }
 
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string Telefon { get; set; }

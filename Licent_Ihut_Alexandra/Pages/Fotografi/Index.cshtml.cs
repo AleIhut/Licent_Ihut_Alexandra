@@ -52,6 +52,7 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
             var searchString = Request.Form["searchString"];
 
             Fotografi = await _context.Fotograf
+                .Include(b => b.Judet)
                 .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString) ).ToListAsync();
         }
     }

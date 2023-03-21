@@ -10,11 +10,11 @@ namespace Licent_Ihut_Alexandra.Models
         [Display(Name = "Numele ")]
         public string Nume { get; set; }
        
-        public int JudetID { get; set; }
-        public Judet Judet { get; set; }
+        public int? JudetID { get; set; }
+        public Judet? Judet { get; set; }
 
-        public int LocalitateID { get; set; }
-        public Localitate Localitate { get; set; }
+        public int? LocalitateID { get; set; }
+        public Localitate? Localitate { get; set; }
         public string? Imagine { get; set; }
 
         [NotMapped]

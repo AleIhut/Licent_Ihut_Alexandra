@@ -10,13 +10,120 @@
         <p> venim acasa </p>
     </div>
 </div>*@
-<html>
+@*<html>
    <body>
       <h2>Ai întâmpinat probleme sau necesiți informații suplimentare? Ne poți trimite un email mai jos:</h2>
       <form action="mailto:hossu.maria@yahoo.com" method="post" enctype="text/plain">
-       @*  Student Name:<br><input type="text" name="sname"> <br>*@
+        Student Name:<br><input type="text" name="sname"> <br>
          Mesajul tău:<br><input type="text" style="width: 400px ; height: 200px"><br>
          <input type="submit" value="Send">
       </form>
    </body>
+</html>*@
+<html>
+    <head>
+
+    </head>
+    <body1>
+    <section id="contact">
+
+        <h1 class="section-header" style=" font-family: 'Kaushan Script'">Contactează-ne!</h1>
+
+        <div class="contact-wrapper">
+
+            <!-- Left contact page -->
+@*
+            <form id="contact-form" class="form-horizontal" role="form" action="mailto:ihutalexandra@yahoo.com" method="post" enctype="text/plain" >
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" value="" required>
+                    </div>
+                </div>
+
+                <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+
+                <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+                    <div class="alt-send-button">
+                       @* <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>*@
+                  @*      <input type="submit" value="Send">
+
+                </button>
+
+            </form>*@
+            <form  action="mailto:ihutalexandra@yahoo.com" method="post" enctype="text/plain">
+      @*  Student Name:<br><input type="text" name="sname" placeholder="nume"> <br>*@
+                <div class="form-group">
+                    <div class="col-sm-12" >
+                        @*<input  type="text" placeholder="NAME" name="name" required>*@
+                        <textarea type:"text" class="form-control" rows="2" placeholder="NUME" name="Nume" style="color:#66A1A8" required></textarea>
+                    </div>
+                </div>
+         @*Mesajul tău:<br><input type="text" style="width: 400px ; height: 200px" placeholder="mesaj"><br>*@
+                <textarea type:"text" class="form-control" rows="10" placeholder="MESAJ" name="Mesaj" style="color:#66A1A8"  required></textarea>
+         @*<input type="submit" value="Send">*@
+                <button class="btn btn-primary send-button" type="submit" value="SEND" style="background-color: #212529 ; color: #66A1A8 ; border: none">TRIMITE</button>
+         </form>
+
+            <!-- Left contact page -->
+
+            <div class="direct-contact-container">
+
+                <ul class="contact-list">
+                    <li class="list-item"><i class="bi bi-map "><span class="contact-text place"><a  title="Locatie">Oradea, Bihor</a> </span></i></li>
+
+                    <li class="list-item"><i class="bi bi-telephone-outbound"><span class="contact-text phone"><a href="tel:0722433411" title="Contactează-ne telefonic!">0722-344-311</a></span></i></li>
+
+                    <li class="list-item"><i class="bi bi-envelope-at"><span class="contact-text gmail"><a href="mailto:ihutalexandra@yahoo.com" title="Trimite email!">ihutalexandra@yahoo.com</a></span></i></li>
+
+                </ul>
+
+                <hr>
+                <ul class="social-media-list">
+                    <li>
+                        <a  target="_blank" class="contact-icon">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a  target="_blank" class="contact-icon">
+                            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a  target="_blank" class="contact-icon">
+                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a  target="_blank" class="contact-icon">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+
+                
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body1>
 </html>
+<script>
+    document.querySelector('#contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.target.elements.name.value = '';
+    e.target.elements.email.value = '';
+    e.target.elements.message.value = '';
+  });
+</script>

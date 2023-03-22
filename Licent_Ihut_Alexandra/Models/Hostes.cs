@@ -16,7 +16,7 @@ namespace Licent_Ihut_Alexandra.Models
         // public string? Localitate { get; set; }
         public int? LocalitateID { get; set; }
         public Localitate? Localitate { get; set; }
-        public string Imagine { get; set; }
+        public string? Imagine { get; set; }
 
         [NotMapped]
         [Display(Name = "Forografie(.jpg sau .png)")]

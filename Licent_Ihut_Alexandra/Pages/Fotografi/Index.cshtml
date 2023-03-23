@@ -12,13 +12,13 @@
 <h1 style="color: moccasin ;font-style:italic">Momentele memorabile trebuie surpinse!</h1>
 
 <p>
-    <a class="btn btn-primary" asp-page="Create" style="color: peru; background-color: black; text-decoration: none; border-color: black">Creaza</a>
+    <a class="btn btn-primary" asp-page="Create" style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">Creaza</a>
 </p>
     <p style="color: moccasin ;font-style:italic"> Caută aici în funcție de nume sau județ  </p>
 @*<a asp-page="./Index" asp-route-sortOrder="@Model.JudetSort">
 
     </a>
-    <a asp-page="./Index" asp-route-sortOrder="@Model.JudetSort" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+    <a asp-page="./Index" asp-route-sortOrder="@Model.JudetSort" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
 *@
     @*<table class="table">
     <thead>
@@ -73,11 +73,11 @@
             </td>*@
     <form method="post" class="searchForm">
         <input type="text" name="searchString" />
-       @* <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Căutare" class="btn btn-primary" />*@
-        <div><a  type="submit" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Caută</a> 
+       @* <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Căutare" class="btn btn-primary" />*@
+        <div><a  type="submit" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Caută</a> 
         @*<input type="submit" value="Search" />*@
-      @*  <input style="color: peru; background-color: black ; border-color: black; text-decoration: none" type="submit" asp-page="./Index" value="Înapoi" class="btn btn-primary" />*@
-        <a asp-page="Index" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a> </div>
+      @*  <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" asp-page="./Index" value="Înapoi" class="btn btn-primary" />*@
+        <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a> </div>
     </form>
             <div class="row" >
         <div style="display: flex ; flex-wrap: wrap;" class="row-cols-sm-3">
@@ -100,11 +100,11 @@
                     @Html.DisplayFor(modelItem => item.Judet.Nume)
             </div>
             <div>
-                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: peru;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
 
-                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: peru; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
+                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
 
-                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: peru ; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Șterge</a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Șterge</a>
             </div>
         </div>
 }

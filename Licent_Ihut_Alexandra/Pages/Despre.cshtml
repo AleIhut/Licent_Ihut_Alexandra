@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Despre noi";
 }
-<html>
+
+@*<html>
 <head>
     <link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
     <style>
@@ -41,7 +42,7 @@
         }
 
         body {
-            background-color: peru;
+            background-color: #66A1A8;
         }
 
         .right {
@@ -80,4 +81,99 @@
     </div>
 
 </body>
+</html>*@
+
+<html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--<title> An About Us Page | CoderGirl </title>-->
+    <!---Custom Css File!--->
+    <link rel="stylesheet" href="style.css">
+    <style>
+   
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.about-us{
+  height: 100vh;
+  width: 100%;
+  padding: 90px 0;
+  background: #fff;
+}
+.pic{
+  height: auto;
+  width:  302px;
+}
+.about{
+  width: 1130px;
+  max-width: 85%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.text{
+  width: 540px;
+}
+.text h2{
+  font-size: 90px;
+  font-weight: 600;
+  margin-bottom: 10px;
+
+}
+.text h5{
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+span{
+  color: #66A1A8 ;
+}
+.text p{
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+.data{
+  margin-top: 30px;
+}
+.contact{
+  font-size: 18px;
+  background: #000;
+  color: #66A1A8 ;
+  text-decoration: none;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 6px;
+  transition: 0.5s;
+}
+.contact:hover{
+  background: #fff ;
+  border: 1px solid #66A1A8;
+}
+
+
+</style>
+</head>
+<body>
+    <section class="about-us">
+        <div class="about">
+            <img src="~/img/about.jpg" class="pic">
+            <div class="text">
+                <h2>Despre...</h2>
+                <h5>Promovează-ți afacerea & <span> Caută servicii</span></h5>
+                <p>Această aplicație web a fost creată cu scopul de a realiza o pârghie de legătură între cerere și ofertă. În cadrul aplicației se pot promova servicii sau se pot viziona ofertele deja publicate. Conținutul nostru se potrivește de minune pentru cei care doresc să organizeze un eveniment.</p>
+                <div class="data">
+                    <a asp-page="Contact" class="contact">Contactează-ne!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
 </html>
+

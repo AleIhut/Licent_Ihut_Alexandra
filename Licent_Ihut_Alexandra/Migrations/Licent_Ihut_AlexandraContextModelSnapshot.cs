@@ -51,6 +51,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -64,6 +67,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("JudetID");
 
                     b.HasIndex("LocalitateID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Artist");
                 });
@@ -112,6 +117,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("MaterialID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Telefon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -119,6 +127,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("MaterialID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Decoratiune");
                 });
@@ -148,6 +158,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -161,6 +174,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("JudetID");
 
                     b.HasIndex("LocalitateID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Fotograf");
                 });
@@ -207,6 +222,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -220,6 +238,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("JudetID");
 
                     b.HasIndex("LocalitateID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Hostes");
                 });
@@ -324,6 +344,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -338,7 +361,38 @@ namespace Licent_Ihut_Alexandra.Migrations
 
                     b.HasIndex("LocalitateID");
 
+                    b.HasIndex("MembruID");
+
                     b.ToTable("MaterialPirotehnic");
+                });
+
+            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Membru", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Adresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nume")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenume")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
@@ -374,6 +428,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -387,6 +444,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("JudetID");
 
                     b.HasIndex("LocalitateID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Prajitura");
                 });
@@ -422,6 +481,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("LocalitateID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -435,6 +497,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("JudetID");
 
                     b.HasIndex("LocalitateID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("SalaEveniment");
                 });
@@ -452,6 +516,9 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Numar")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -461,6 +528,8 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MembruID");
 
                     b.ToTable("Sonorizare");
                 });
@@ -498,9 +567,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("Artisti")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Artisti")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Decoratiune", b =>
@@ -509,7 +584,13 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("Decoratiune")
                         .HasForeignKey("MaterialID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Decoratiuni")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Material");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Fotograf", b =>
@@ -522,9 +603,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("Fotografi")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Fotografi")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Hostes", b =>
@@ -537,9 +624,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("Hostess")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Hostess")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.HostesCuloare", b =>
@@ -580,9 +673,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("MaterialePirotehnice")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("MaterialePirotehnice")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Prajitura", b =>
@@ -595,9 +694,15 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("Prajituri")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Prajituri")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEveniment", b =>
@@ -610,9 +715,24 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("SaliEvenimente")
                         .HasForeignKey("LocalitateID");
 
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("SaliEvenimente")
+                        .HasForeignKey("MembruID");
+
                     b.Navigation("Judet");
 
                     b.Navigation("Localitate");
+
+                    b.Navigation("Membru");
+                });
+
+            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Sonorizare", b =>
+                {
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany("Sonorizari")
+                        .HasForeignKey("MembruID");
+
+                    b.Navigation("Membru");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SonorizareGenMuzical", b =>
@@ -684,6 +804,25 @@ namespace Licent_Ihut_Alexandra.Migrations
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Material", b =>
                 {
                     b.Navigation("Decoratiune");
+                });
+
+            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Membru", b =>
+                {
+                    b.Navigation("Artisti");
+
+                    b.Navigation("Decoratiuni");
+
+                    b.Navigation("Fotografi");
+
+                    b.Navigation("Hostess");
+
+                    b.Navigation("MaterialePirotehnice");
+
+                    b.Navigation("Prajituri");
+
+                    b.Navigation("SaliEvenimente");
+
+                    b.Navigation("Sonorizari");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Sonorizare", b =>

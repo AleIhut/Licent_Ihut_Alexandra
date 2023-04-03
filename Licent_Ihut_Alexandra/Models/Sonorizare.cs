@@ -14,8 +14,11 @@ namespace Licent_Ihut_Alexandra.Models
         [StringLength(300)]
         public string Descriere { get; set; }
         [Display(Name = "Genuri muzicale interpretate")]
+
         
         public ICollection<SonorizareGenMuzical>? SonorizareGenuriMuzicale { get; set; }
 
+        public int? MembruID { get; set; }
+        public Membru? Membru { get; set; }
     }
 }

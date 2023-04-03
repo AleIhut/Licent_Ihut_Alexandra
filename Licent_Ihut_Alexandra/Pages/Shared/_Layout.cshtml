@@ -26,6 +26,10 @@
                         <a class="nav-link text-muted" asp-area="" asp-page="/Despre"><i class="bi bi-file-earmark-person"></i> Despre</a>
 
                     </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link text-muted" asp-area="" asp-page="/Membri/Index">Membri</a> 
+                        </li>
+               
                     <li class="nav-item">
                         <a class="nav-link text-muted" asp-area="" asp-page="/Contact"><i class="bi bi-phone"></i> Contact</a>
 
@@ -62,7 +66,7 @@
 
                @* <span class="text-muted">Toggleable via the navbar brand.</span>*@
             </div>
-
+            </ul > <partial name="_LoginPartial" />
         </div>
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">

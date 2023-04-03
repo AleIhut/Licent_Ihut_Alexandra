@@ -59,8 +59,8 @@ body {
 .form-control,
 textarea {
     max-width: 400px;
-    background-color: #212529; 000
-    color:  #212529 ;  /*#fff;*/
+    background-color: /*#212529;*/ #000; 
+    color: /*#212529 ;*//* #fff;*/#66A1A8;
     letter-spacing: 1px;
 }
 
@@ -241,6 +241,8 @@ hr {
 
     .form-control, textarea {
         margin: 0 auto;
+        background-color: /*#212529;*/ #fff;
+        color: /*#212529 ;*/ /* #fff;*/ #66A1A8;
     }
 
 

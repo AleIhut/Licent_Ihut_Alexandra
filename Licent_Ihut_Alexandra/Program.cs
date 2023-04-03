@@ -1,12 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Licent_Ihut_Alexandra.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Licent_Ihut_AlexandraContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Licent_Ihut_AlexandraContext") ?? throw new InvalidOperationException("Connection string 'Licent_Ihut_AlexandraContext' not found.")));
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString
+("Licent_Ihut_AlexandraContext") ?? throw new InvalidOperationException
+("Connection string 'Licent_Ihut_AlexandraContext' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
 
@@ -22,6 +30,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 

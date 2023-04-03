@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using System.Diagnostics.Metrics;
 
 namespace Licent_Ihut_Alexandra.Models
 {
@@ -35,5 +36,7 @@ namespace Licent_Ihut_Alexandra.Models
 
         [StringLength(300)]
         public string? Descriere { get; set; }
+        public int? MembruID { get; set; }
+        public Membru? Membru { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Policy;
 using System.Xml.Linq;
 
 namespace Licent_Ihut_Alexandra.Models
@@ -13,6 +14,8 @@ namespace Licent_Ihut_Alexandra.Models
         public string Email { get; set; }
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string? Telefon { get; set; }
+        public int? UserSauPrestatorID { get; set; }
+        public UserSauPrestator? UserSauPrestator { get; set; }
         public ICollection<Fotograf>? Fotografi { get; set; }
         public ICollection<SalaEveniment>? SaliEvenimente { get; set; }
         public ICollection<Sonorizare>? Sonorizari { get; set; }

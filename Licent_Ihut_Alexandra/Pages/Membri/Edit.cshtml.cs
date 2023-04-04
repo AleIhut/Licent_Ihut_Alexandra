@@ -30,12 +30,15 @@ namespace Licent_Ihut_Alexandra.Pages.Membri
                 return NotFound();
             }
 
-            var membru =  await _context.Membru.FirstOrDefaultAsync(m => m.ID == id);
+            var membru =  await _context.Membru
+                .Include(b=>b.UserSauPrestator)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (membru == null)
             {
                 return NotFound();
             }
             Membru = membru;
+            ViewData["UserSauPrestatorID"] = new SelectList(_context.Set<UserSauPrestator>(), "ID", "Tip");
             return Page();
         }
 

@@ -17,8 +17,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+
+
 
 namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
 {
@@ -75,19 +78,26 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+
             public string? Nume { get; set; }
             public string? Prenume { get; set; }
             public string? Adresa { get; set; }
+
+
             [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
             public string? Telefon { get; set; }
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+
+            public int? UserSauPrestatorID { get; set; }
+            public UserSauPrestator? UserSauPrestator { get; set; }
+            ///// <summary>
+            /////     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            /////     directly from your code. This API may change or be removed in future releases.
+            ///// </summary>
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
 
 
             /// <summary>
@@ -113,7 +123,10 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            
             ReturnUrl = returnUrl;
+            ViewData["UserSauPrestatorID"] = new SelectList(_context.Set<UserSauPrestator>(), "ID", "Tip");
+           // ViewData["UserSauPrestatorID"] = new SelectList(_context.UserSauPrestator , "ID", "Tip");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
@@ -168,12 +181,23 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
             var result = await _userManager.CreateAsync(user, Input.Password);
 
             Membru.Email = Input.Email;
+            Membru.Nume = Input.Nume;
+            Membru.Prenume = Input.Prenume;
+            Membru.Adresa = Input.Adresa;
+            Membru.Telefon = Input.Telefon;
+            Membru.UserSauPrestatorID = Input.UserSauPrestatorID;
             _context.Membru.Add(Membru);
             await _context.SaveChangesAsync();
 
             if (result.Succeeded)
             {
                 _logger.LogInformation("User created a new account with password.");
+                if (Membru.UserSauPrestatorID == 2){
+                    var role = await _userManager.AddToRoleAsync(user, "Prestator");
+                }
+                else {  var role = await _userManager.AddToRoleAsync(user, "User");
+                }
+               // var role = await _userManager.AddToRoleAsync(user, "User");
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

@@ -25,7 +25,9 @@ namespace Licent_Ihut_Alexandra.Pages.Membri
         {
             if (_context.Membru != null)
             {
-                Membru = await _context.Membru.ToListAsync();
+                Membru = await _context.Membru
+                    .Include(b=>b.UserSauPrestator)
+                    .ToListAsync();
             }
         }
     }

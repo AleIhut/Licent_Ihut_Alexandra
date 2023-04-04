@@ -28,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Membru[0].Telefon)
             </th>
+            <th> @Html.DisplayNameFor(model => model.Membru[0].UserSauPrestator.Tip) 
+
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +52,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Telefon)
             </td>
+                <td> @Html.DisplayFor(modelItem => item.UserSauPrestator.Tip) 
+
+                </td>
             <td>
                @* <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |*@
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

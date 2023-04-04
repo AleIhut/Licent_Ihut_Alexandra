@@ -4,8 +4,25 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => 
+    policy.RequireRole("Admin")); 
+});
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/SaliEvenimente");
+    options.Conventions.AuthorizeFolder("/Sonorizari");
+    options.Conventions.AuthorizeFolder("/Decoratiuni");
+    options.Conventions.AuthorizeFolder("/Fotografi");
+    options.Conventions.AuthorizeFolder("/Artisti");
+    options.Conventions.AuthorizeFolder("/Hostess");
+    options.Conventions.AuthorizeFolder("/MaterialePirotehnice");
+    options.Conventions.AuthorizeFolder("/Prajituri");
+    options.Conventions.AuthorizeFolder("/Membri", "AdminPolicy");
+}
+);
 builder.Services.AddDbContext<Licent_Ihut_AlexandraContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Licent_Ihut_AlexandraContext") ?? throw new InvalidOperationException("Connection string 'Licent_Ihut_AlexandraContext' not found.")));
 builder.Services.AddDbContext<LibraryIdentityContext>(options =>
@@ -14,6 +31,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString
 ("Connection string 'Licent_Ihut_AlexandraContext' not found.")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+   .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();

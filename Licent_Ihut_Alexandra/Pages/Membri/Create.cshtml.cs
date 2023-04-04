@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using System.Security.Policy;
 
 namespace Licent_Ihut_Alexandra.Pages.Membri
 {
@@ -21,6 +22,7 @@ namespace Licent_Ihut_Alexandra.Pages.Membri
 
         public IActionResult OnGet()
         {
+            ViewData["UserSauPrestatorID"] = new SelectList(_context.Set<UserSauPrestator>(), "ID", "Tip");
             return Page();
         }
 

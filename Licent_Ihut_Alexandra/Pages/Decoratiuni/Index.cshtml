@@ -5,12 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 style="color: moccasin ;font-style:italic ">Decor de vis la doar un click distanță</h1>
+<h1 style="color: #66A1A8 ;font-style:italic ">Decor de vis la doar un click distanță</h1>
 
 <p>
     <a class="btn btn-primary" asp-page="Create" style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">Adaugă o nouă înregistrare</a>
 </p>
-<p style="color: moccasin ;font-style:italic"> Caută aici în funcție de denumire  </p>
+<p style="color: #66A1A8 ;font-style:italic"> Caută aici în funcție de denumire  </p>
 <form method="post" class="searchForm">
     <input type="text" name="searchString" />
     @* <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Căutare" class="btn btn-primary" />*@
@@ -22,7 +22,7 @@
 
 </form>
 <table class="table" style="border: 1px solid;">
-    <thead style="color: moccasin ">
+    <thead style="color: #66A1A8 ">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Decoratiune[0].Companie)

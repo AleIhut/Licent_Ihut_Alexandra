@@ -82,7 +82,12 @@
                     </p>
                     <p> de prestări servicii să își promoveze activitatea.</p>
                    @* <button class="submit"; value="Intră în cont">*@
-                    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Intră în cont </a>
+                    <div> <a asp-page="/Account/Login" id="login" asp-area="Identity" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Intră în cont </a>
+                </div>
+
+                <div>
+                    <a id="register" asp-area="Identity" asp-page="/Account/Register" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înregistează-te acum! </a>
+            </div>
                 </div>
                 <div>
                     <p style="font-size: 25px"> Organizează-ți evenimentul! </p>
@@ -91,8 +96,12 @@
                     <p>
                         remarcabil au nenumărate oferte din care să aleagă.
                    </p>
-                    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black " >Intră în cont </a>
-                
+                    <div>    <a asp-page="/Account/Login" id="login" asp-area="Identity" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Intră în cont </a></div>
+
+                    <div>
+                        <a id="register" asp-area="Identity" asp-page="/Account/Register" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înregistează-te acum! </a>
+                </div>
+                        @*<a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>*@
                 </div>
             </div>
            
@@ -105,7 +114,7 @@
             <img src="~/img/eveniment.jpeg" style="width:100%; height:200px ;position: relative ;
     display: block">
         </div>
-    </div>
+   </div>
    
 </body>
 </html>

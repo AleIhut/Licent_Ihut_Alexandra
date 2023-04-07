@@ -31,6 +31,10 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 
         public IActionResult OnGet()
         {
+
+            //aceste 2 linii sunt pt ca fiecare sala sa fie pentru prestatorul ei
+            var userEmail = User.Identity.Name; //email of the connected user
+            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
             var localitati = _context.Localitate
                 .Select(x => new
                 {
@@ -42,6 +46,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID","Nume" , currentMembruID);
             return Page();
         }
 

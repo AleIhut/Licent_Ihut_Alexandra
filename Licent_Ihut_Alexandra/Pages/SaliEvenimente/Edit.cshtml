@@ -5,11 +5,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Aici poți să îți editezi propria ta afacere.  </h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align: center">Aici poți să îți editezi propria ta afacere.  </h1>
 
-<h4 style="color: black"> Sală de evenimente </h4>
+<h4 style="color: black ; text-align: center"> Sală de evenimente </h4>
 <hr />
-<div class="row">
+<div class="row" margin: 25px;>
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -65,14 +65,21 @@
                 <input asp-for="SalaEveniment.Descriere" class="form-control" />
                 <span asp-validation-for="SalaEveniment.Descriere" class="text-danger"></span>
             </div>
+           @* <div class="form-group">
+                <label asp-for="SalaEveniment.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="SalaEveniment.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+                
+                <span asp-validation-for="SalaEveniment.MembruID" class="text-danger"></span>
+            </div>*@ <br />
             <div class="form-group">
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none"  type="submit" value="Salvează" class="btn btn-primary" />
             </div>
         </form>
+       
     </div>
 </div>
 
-<div>
+<div style="margin: 50px" >
     <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
    @* <a asp-page="./Index">Back to List</a>*@
 </div>

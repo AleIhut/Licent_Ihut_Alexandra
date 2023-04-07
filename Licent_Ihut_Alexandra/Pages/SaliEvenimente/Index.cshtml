@@ -61,11 +61,11 @@
 
             </form>
             </br>
-<div class="row" >
+            <div @*class="row"*@ class="card">
         <div style="display: flex ; flex-wrap: wrap;" class="row-cols-sm-3">
-@foreach (var item in Model.SalaEveniment)
+@foreach (var item in Model.SaliDeEvenimente)
             {
-                <div >
+                        <div >
                @* <div>
                   <a style="background-color:aqua">@Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
                 @Html.DisplayFor(modelItem => item.Nume)</a>
@@ -87,11 +87,14 @@
                         <img src="data:image/jpg;base64 , @item.Imagine" width="140px" height="140px" />
                     </span>
                @* @Html.DisplayFor(modelItem => item.Nume)*@
-                        @Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
+                        @Html.DisplayNameFor(model => model.SaliDeEvenimente[0].Nume)
                         @Html.DisplayFor(modelItem => item.Nume)
                         <p> </p>
-                        @Html.DisplayNameFor(model => model.SalaEveniment[0].Judet)
+                        @Html.DisplayNameFor(model => model.SaliDeEvenimente[0].Judet)
                         @Html.DisplayFor(modelItem => item.Judet.Nume)
+                                <p> </p>
+                                @Html.DisplayNameFor(model => model.SaliDeEvenimente[0].Membru)
+                                @Html.DisplayFor(modelItem => item.Membru.Nume)
             </div>
             
            @* <div>

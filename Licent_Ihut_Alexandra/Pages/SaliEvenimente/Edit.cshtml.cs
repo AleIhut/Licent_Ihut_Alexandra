@@ -10,6 +10,7 @@ using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 {
@@ -92,22 +93,29 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             //}
             
             _context.Attach(SalaEveniment).State = EntityState.Modified;
-            
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SalaEvenimentExists(SalaEveniment.ID))
+           // var userEmail = User.Identity.Name;
+
+            //if (userEmail == SalaEveniment.Membru?.Email) { 
+                try
                 {
-                    return NotFound();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!SalaEvenimentExists(SalaEveniment.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-            }
+           // }
+           /* else
+            {
+                ///alert 
+            }*/
 
             return RedirectToPage("./Index");
 

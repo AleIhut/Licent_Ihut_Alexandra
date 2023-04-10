@@ -29,10 +29,17 @@
                 <span asp-validation-for="Sonorizare.Numar" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Sonorizare.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="Sonorizare.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+                
+                <span asp-validation-for="Sonorizare.MembruID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Sonorizare.Descriere" class="control-label"></label>
                 <input asp-for="Sonorizare.Descriere" class="form-control" />
                 <span asp-validation-for="Sonorizare.Descriere" class="text-danger"></span>
             </div>
+
               <div class="form-group">
             <div class="table">
                 <table>

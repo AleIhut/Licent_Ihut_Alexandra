@@ -14,7 +14,7 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
     public class IndexModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
+        private readonly string ADMIN_EMAIL = "ihutalexandra@yahoo.com";
         public IndexModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
         {
             _context = context;
@@ -43,7 +43,7 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
             SonorizareD = new SonorizareData();
 
             SonorizareD.Sonorizari = await _context.Sonorizare
-             
+                    .Include(b => b.Membru)
                 .Include(b => b.SonorizareGenuriMuzicale)
                 .ThenInclude(b => b.GenMuzical)
                 .AsNoTracking()
@@ -72,7 +72,31 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
                     //    studentsIQ = studentsIQ.OrderBy(s => s.Nume);
                     //    break;
             }
+            var userEmail = User.Identity.Name;
+            var role = User.IsInRole("Admin"); // cum pot prelua rolul in variabila rol ????????????
+            var role1 = User.IsInRole("User");
+            var role2 = User.IsInRole("Prestator");
 
+            if (userEmail != ADMIN_EMAIL)
+            {
+
+                //SaliDeEvenimente =  SaliDeEvenimente.Where(sala => sala.Membru?.Email == userEmail);
+                //SalaEveniment = SalaEveniment.Where(sala => sala.Membru?.Email == userEmail);
+                //    //SalaEveniment = (IList<SalaEveniment>)SalaEveniment.Where(b => b.Membru?.Email == userEmail);
+                //    //SalaEveniment = (IList<SalaEveniment>)SalaEveniment.Where(SalaEveniment => SalaEveniment.Membru?.Email == userEmail);
+                if (role2 == true)
+                {   /// prestator 
+                    IList<Sonorizare> filteredSali = new List<Sonorizare>();
+                    foreach (Sonorizare sala in SonorizareD.Sonorizari)
+                    {
+                        if (sala.Membru?.Email == userEmail)
+                        {
+                            filteredSali.Add(sala);
+                        }
+                    }
+                    SonorizareD.Sonorizari = filteredSali;
+                }
+            }
             //if (_context.Sonorizare != null)
             //{
             //    Sonorizare = await _context.Sonorizare.ToListAsync();

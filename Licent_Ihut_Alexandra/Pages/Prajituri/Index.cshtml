@@ -37,7 +37,7 @@
     </form>
     <div class="row" style="margin: 30px">
         <div style="display: flex ; flex-wrap: wrap;" class="row-cols-sm-3">
-            @foreach (var item in Model.Prajitura)
+            @foreach (var item in Model.Prajituri)
             {
                 <div>
                   
@@ -48,10 +48,10 @@
                             <img src="data:image/jpg;base64 , @item.Imagine"  alt="Avatar"  style="width:100%" />@*width="200px" height="140px"*@
                         </span>
                        <div class="container">
-                        @Html.DisplayNameFor(model => model.Prajitura[0].Nume)
+                        @Html.DisplayNameFor(model => model.Prajituri[0].Nume)
                         @Html.DisplayFor(modelItem => item.Nume)
                         <p> </p>
-                        @Html.DisplayNameFor(model => model.Prajitura[0].Judet)
+                        @Html.DisplayNameFor(model => model.Prajituri[0].Judet)
                         @Html.DisplayFor(modelItem => item.Judet.Nume)
                         <br/>
                           <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>

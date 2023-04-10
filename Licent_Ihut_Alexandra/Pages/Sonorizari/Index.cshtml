@@ -31,6 +31,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Sonorizare[0].Numar)
             </th>
+            <th>
+            @Html.DisplayNameFor(model => model.Sonorizare[0].Membru)
+
+            </th>
             <!-- <th>
                 @Html.DisplayNameFor(model => model.Sonorizare[0].Descriere)
             </th>
@@ -38,6 +42,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Sonorizare[0].SonorizareGenuriMuzicale) 
             </th>
+          
             <th></th>
         </tr>
     </thead>
@@ -58,6 +63,11 @@
             <th>
                 @Html.DisplayFor(modelItem => item.Numar)
             </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Membru.Nume)
+
+            </th>
+               
            <!-- <td>
                 @Html.DisplayFor(modelItem => item.Descriere)
             </td>

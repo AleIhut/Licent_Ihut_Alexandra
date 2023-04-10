@@ -9,11 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Licent_Ihut_Alexandra.Pages.Sonorizari
 {
+    [Authorize(Roles = "Prestator")]
     public class EditModel : GenuriMuzicaleModel
     {
+       
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
 
         public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)

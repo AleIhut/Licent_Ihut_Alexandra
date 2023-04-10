@@ -25,20 +25,20 @@
     <thead style="color: #66A1A8 ">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Decoratiune[0].Companie)
+                @Html.DisplayNameFor(model => model.Decoratiuni[0].Companie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Decoratiune[0].Locație)
+                @Html.DisplayNameFor(model => model.Decoratiuni[0].Locație)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Decoratiune[0].Telefon)
+                @Html.DisplayNameFor(model => model.Decoratiuni[0].Telefon)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Decoratiune[0].Email)
+                @Html.DisplayNameFor(model => model.Decoratiuni[0].Email)
             </th>
             <th>
                
-              @Html.DisplayNameFor(model => model.Decoratiune[0].Material.Tip)
+              @Html.DisplayNameFor(model => model.Decoratiuni[0].Material.Tip)
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Decoratiune[0].Descriere)
@@ -47,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Decoratiune) {
+@foreach (var item in Model.Decoratiuni) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Companie)

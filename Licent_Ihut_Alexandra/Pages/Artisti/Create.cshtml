@@ -54,6 +54,11 @@
                 <span asp-validation-for="Artist.Descriere" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Artist.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="Artist.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+                <span asp-validation-for="Artist.MembruID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Crează " class="btn btn-primary" />
             </div>
         </form>

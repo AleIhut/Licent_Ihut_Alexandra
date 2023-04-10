@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 {
+    [Authorize(Roles = "Prestator")]
     public class EditModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;

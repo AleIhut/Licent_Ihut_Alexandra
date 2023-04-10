@@ -9,10 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.Extensions.Hosting;
-
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Licent_Ihut_Alexandra.Pages.Hostess
 {
+    [Authorize(Roles = "Prestator")]
     public class EditModel : CuloriRochitaPageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;

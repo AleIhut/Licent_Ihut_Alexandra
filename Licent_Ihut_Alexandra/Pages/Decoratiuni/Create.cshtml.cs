@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 {
+    [Authorize(Roles = "Prestator")]
     public class CreateModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
@@ -21,7 +23,11 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 
         public IActionResult OnGet()
         {
-        ViewData["MaterialID"] = new SelectList(_context.Material, "ID", "Tip");
+            var userEmail = User.Identity.Name; //email of the connected user
+            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;  
+
+            ViewData["MaterialID"] = new SelectList(_context.Material, "ID", "Tip");
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
             return Page();
         }
 

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Licent_Ihut_Alexandra.Pages.Artisti
 {
+    [Authorize(Roles = "Prestator")]
     public class CreateModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
@@ -21,6 +24,8 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
 
         public IActionResult OnGet()
         {
+            var userEmail = User.Identity.Name; //email of the connected user
+            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
             var localitati = _context.Localitate
                     .Select(x => new
                     {
@@ -32,6 +37,7 @@ namespace Licent_Ihut_Alexandra.Pages.Artisti
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
             return Page();
         }
 

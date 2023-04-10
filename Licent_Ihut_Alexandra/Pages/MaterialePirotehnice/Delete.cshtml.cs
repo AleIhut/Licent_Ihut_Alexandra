@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Licent_Ihut_Alexandra.Pages.MaterialePirotehnice
 {
+    [Authorize(Roles = "Prestator")]
     public class DeleteModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;

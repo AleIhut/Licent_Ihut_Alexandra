@@ -14,13 +14,13 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
     public class IndexModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
+        private readonly string ADMIN_EMAIL = "ihutalexandra@yahoo.com";
         public IndexModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
         {
             _context = context;
         }
 
-        public IList<Decoratiune> Decoratiune { get;set; } = default!;
+        public IList<Decoratiune> Decoratiuni { get;set; } = default!;
        
 
         public async Task OnGetAsync( )
@@ -30,17 +30,38 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
            
             if (_context.Decoratiune != null)
             {
-                Decoratiune = await _context.Decoratiune
+                Decoratiuni = await _context.Decoratiune
+                 .Include(d => d.Membru)
                 .Include(d => d.Material)
                 .ToListAsync();
             }
-          
+            var userEmail = User.Identity.Name;
+            var role = User.IsInRole("Admin"); // cum pot prelua rolul in variabila rol ????????????
+            var role1 = User.IsInRole("User");
+            var role2 = User.IsInRole("Prestator");
+
+            if (userEmail != ADMIN_EMAIL)
+            {
+                if (role2 == true)
+                {   /// prestator 
+                    IList<Decoratiune> filteredSali = new List<Decoratiune>();
+                    foreach (Decoratiune deco in Decoratiuni)
+                    {
+                        if (deco.Membru?.Email == userEmail)
+                        {
+                            filteredSali.Add(deco);
+                        }
+                    }
+                    Decoratiuni = filteredSali;
+                }
             }
+
+        }
         public async Task OnPostAsync()
         {
             var searchString = Request.Form["searchString"];
 
-            Decoratiune = await _context.Decoratiune
+            Decoratiuni = await _context.Decoratiune
                
                 .Where(x => x.Companie.Contains(searchString) ).ToListAsync();
         }

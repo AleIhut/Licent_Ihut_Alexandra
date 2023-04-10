@@ -24,19 +24,19 @@
     <thead>
         <tr>
             <th style ="border: 1px solid">
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Nume)
+                @Html.DisplayNameFor(model => model.MaterialePirotehnice[0].Nume)
             </th>
             <th style="border: 1px solid">
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Judet)
+                @Html.DisplayNameFor(model => model.MaterialePirotehnice[0].Judet)
             </th>
             <th style="border: 1px solid">
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Localitate)
+                @Html.DisplayNameFor(model => model.MaterialePirotehnice[0].Localitate)
             </th>
             <th style="border: 1px solid">
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Telefon)
+                @Html.DisplayNameFor(model => model.MaterialePirotehnice[0].Telefon)
             </th >
             <th style="border: 1px solid">
-                @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Email)
+                @Html.DisplayNameFor(model => model.MaterialePirotehnice[0].Email)
             </th >
            @* <th>
                 @Html.DisplayNameFor(model => model.MaterialPirotehnic[0].Descriere)
@@ -45,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MaterialPirotehnic) {
+@foreach (var item in Model.MaterialePirotehnice) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nume)

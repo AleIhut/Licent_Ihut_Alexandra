@@ -37,7 +37,7 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
-            ViewData["MembruID"] = new SelectList(_context.Membru, "currentMembruID"); /*"ID", "Nume",*/
+            ViewData["MembruID"] = new SelectList(_context.Membru,"ID", "Nume", currentMembruID); 
             return Page();
         }
       

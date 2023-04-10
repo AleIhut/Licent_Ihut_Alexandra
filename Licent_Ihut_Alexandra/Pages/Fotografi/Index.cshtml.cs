@@ -14,7 +14,7 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
     public class IndexModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
+        private readonly string ADMIN_EMAIL = "ihutalexandra@yahoo.com";
         public IndexModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
         {
             _context = context;
@@ -33,13 +33,34 @@ namespace Licent_Ihut_Alexandra.Pages.Fotografi
                 //var searchString = Request.Form["searchString"];
 
                 Fotografi = await _context.Fotograf
+                .Include(f => f.Membru)
                .Include(f => f.Judet)
                .Include(f => f.Localitate)
              //  .Where(x => x.Nume.Contains(searchString))
                .ToListAsync();
             }
-            
-           
+            var userEmail = User.Identity.Name;
+            var role = User.IsInRole("Admin"); // cum pot prelua rolul in variabila rol ????????????
+            var role1 = User.IsInRole("User");
+            var role2 = User.IsInRole("Prestator");
+
+            if (userEmail != ADMIN_EMAIL)
+            {
+                if (role2 == true)
+                {   /// prestator 
+                    IList<Fotograf> filteredSali = new List<Fotograf>();
+                    foreach (Fotograf foto in Fotografi)
+                    {
+                        if (foto.Membru?.Email == userEmail)
+                        {
+                            filteredSali.Add(foto);
+                        }
+                    }
+                    Fotografi = filteredSali;
+                }
+            }
+
+
             //switch (sortOrder)
             //{
             //    case "judet_desc":

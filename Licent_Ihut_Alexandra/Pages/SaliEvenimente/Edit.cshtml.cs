@@ -38,6 +38,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
              SalaEveniment = await _context.SalaEveniment
                 .Include(b => b.Judet)
                 .Include(b => b.Localitate)
+          
                 .FirstOrDefaultAsync(m => m.ID == id);
               //  .Include(b => b.Judet)
                 
@@ -46,8 +47,8 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
                 return NotFound();
             }
             //aceste 2 linii sunt pt ca fiecare sala sa fie pentru prestatorul ei
-            //var userEmail = User.Identity.Name; //email of the connected user
-            //int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
+            var userEmail = User.Identity.Name; //email of the connected user
+            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
             SalaEveniment = SalaEveniment;
             var localitati = _context.Localitate
                .Select(x => new
@@ -60,7 +61,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
-            //ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
 
 
 

@@ -55,10 +55,10 @@
             
             <div class="row" style="margin: 50px">
                 @* class="card"*@
-                <div style="display: flex ; flex-wrap: wrap; margin: 10px" class="row-cols-sm-3">
+                <div style="display: flex ; flex-wrap: wrap" class="row-cols-sm-3">
 @foreach (var item in Model.SaliDeEvenimente)
             {
-                        <div class="card" >
+                        <div class="card" style="" >
                @* <div>
                   <a style="background-color:aqua">@Html.DisplayNameFor(model => model.SalaEveniment[0].Nume)
                 @Html.DisplayFor(modelItem => item.Nume)</a>
@@ -75,7 +75,7 @@
             </div>*@
 
 
-                            <div style="width:100%;  display:inline-block; padding:4px ; border: 10px" class="card">
+                            <div style="width:100%;  display:inline-block; padding:4px ; border: 10px " class="card">
                    @* <span stlye="padding-bottom:4px;">*@
                                     <img src="data:image/jpg;base64 , @item.Imagine" style=" width:100% ; height:50%" />
                    @* </span>*@

@@ -25,14 +25,14 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 
         public async Task OnGetAsync( )
         {
-            
 
+            Decoratiuni = new List<Decoratiune>();
            
             if (_context.Decoratiune != null)
             {
                 Decoratiuni = await _context.Decoratiune
-                 .Include(d => d.Membru)
                 .Include(d => d.Material)
+                .Include(d => d.Membru)
                 .ToListAsync();
             }
             var userEmail = User.Identity.Name;
@@ -44,15 +44,15 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
             {
                 if (role2 == true)
                 {   /// prestator 
-                    IList<Decoratiune> filteredSali = new List<Decoratiune>();
+                    IList<Decoratiune> filteredDeco = new List<Decoratiune>();
                     foreach (Decoratiune deco in Decoratiuni)
                     {
                         if (deco.Membru?.Email == userEmail)
                         {
-                            filteredSali.Add(deco);
+                            filteredDeco.Add(deco);
                         }
                     }
-                    Decoratiuni = filteredSali;
+                    Decoratiuni = filteredDeco;
                 }
             }
 
@@ -62,7 +62,7 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
             var searchString = Request.Form["searchString"];
 
             Decoratiuni = await _context.Decoratiune
-               
+               .Include(b => b.Material)
                 .Where(x => x.Companie.Contains(searchString) ).ToListAsync();
         }
     }

@@ -23,7 +23,7 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
         }
 
         [BindProperty]
-        public Decoratiune Decoratiune { get; set; } = default!;
+        public Decoratiune Decoratiuni { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,15 +32,19 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
                 return NotFound();
             }
 
-            var decoratiune =  await _context.Decoratiune
-                .Include(x => x.Material)
+             Decoratiuni =  await _context.Decoratiune
+                .Include(b => b.Material)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (decoratiune == null)
+            if (Decoratiuni == null)
             {
                 return NotFound();
             }
-            Decoratiune = decoratiune;
-           ViewData["MaterialID"] = new SelectList(_context.Material, "ID", "Tip");
+            var userEmail = User.Identity.Name; //email of the connected user
+            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
+            Decoratiuni = Decoratiuni;
+
+           ViewData["MaterialID"] = new SelectList(_context.Set<Material>(), "ID", "Tip");
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
             return Page();
         }
 
@@ -53,7 +57,7 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
                 return Page();
             }
 
-            _context.Attach(Decoratiune).State = EntityState.Modified;
+            _context.Attach(Decoratiuni).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +65,7 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DecoratiuneExists(Decoratiune.ID))
+                if (!DecoratiuneExists(Decoratiuni.ID))
                 {
                     return NotFound();
                 }
@@ -76,7 +80,9 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 
         private bool DecoratiuneExists(int id)
         {
-          return _context.Decoratiune.Any(e => e.ID == id);
+           
+              
+            return _context.Decoratiune.Any(e => e.ID == id);
         }
     }
 }

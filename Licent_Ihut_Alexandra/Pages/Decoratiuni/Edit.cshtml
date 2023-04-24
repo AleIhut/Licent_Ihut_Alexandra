@@ -5,55 +5,60 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Aici poți să îți editezi propria ta afacere.  </h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align:center">Aici poți să îți editezi propria ta afacere.  </h1>
 
-<h4 style="color: black"> Decorațiuni </h4>
+<h4 style="color: black ;  text-align:center"> Decorațiuni </h4>
 <hr />
-<div class="row">
+<div class="row" >
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Decoratiune.ID" />
+            <input type="hidden" asp-for="Decoratiuni.ID" />
             <div class="form-group">
-                <label asp-for="Decoratiune.Companie" class="control-label"></label>
-                <input asp-for="Decoratiune.Companie" class="form-control" />
-                <span asp-validation-for="Decoratiune.Companie" class="text-danger"></span>
+                <label asp-for="Decoratiuni.Companie" class="control-label"></label>
+                <input asp-for="Decoratiuni.Companie" class="form-control" />
+                <span asp-validation-for="Decoratiuni.Companie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Decoratiune.Locație" class="control-label"></label>
-                <input asp-for="Decoratiune.Locație" class="form-control" />
-                <span asp-validation-for="Decoratiune.Locație" class="text-danger"></span>
+                <label asp-for="Decoratiuni.Locație" class="control-label"></label>
+                <input asp-for="Decoratiuni.Locație" class="form-control" />
+                <span asp-validation-for="Decoratiuni.Locație" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Decoratiune.Telefon" class="control-label"></label>
-                <input asp-for="Decoratiune.Telefon" class="form-control" />
-                <span asp-validation-for="Decoratiune.Telefon" class="text-danger"></span>
+                <label asp-for="Decoratiuni.Telefon" class="control-label"></label>
+                <input asp-for="Decoratiuni.Telefon" class="form-control" />
+                <span asp-validation-for="Decoratiuni.Telefon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Decoratiune.Email" class="control-label"></label>
-                <input asp-for="Decoratiune.Email" class="form-control" />
-                <span asp-validation-for="Decoratiune.Email" class="text-danger"></span>
+                <label asp-for="Decoratiuni.Email" class="control-label"></label>
+                <input asp-for="Decoratiuni.Email" class="form-control" />
+                <span asp-validation-for="Decoratiuni.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Decoratiune.MaterialID" class="control-label">Materiale florale</label>
-                <select asp-for="Decoratiune.MaterialID" class="form-control" asp-items="ViewBag.MaterialID"></select>
-                <span asp-validation-for="Decoratiune.MaterialID" class="text-danger"></span>
+                <label asp-for="Decoratiuni.MaterialID" class="control-label">Materiale florale</label>
+                <select asp-for="Decoratiuni.MaterialID" class="form-control" asp-items="ViewBag.MaterialID"></select>
+                <span asp-validation-for="Decoratiuni.MaterialID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Decoratiune.Descriere" class="control-label"></label>
-                <input asp-for="Decoratiune.Descriere" class="form-control" />
-                <span asp-validation-for="Decoratiune.Descriere" class="text-danger"></span>
+                <label asp-for="Decoratiuni.Descriere" class="control-label"></label>
+                <input asp-for="Decoratiuni.Descriere" class="form-control" />
+                <span asp-validation-for="Decoratiuni.Descriere" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Decoratiuni.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="Decoratiuni.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+
+                <span asp-validation-for="Decoratiuni.MembruID" class="text-danger"></span>
+            </div><br />
             <div class="form-group">
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Salvează" class="btn btn-primary" />
+                 <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

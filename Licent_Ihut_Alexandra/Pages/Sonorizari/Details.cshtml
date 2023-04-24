@@ -5,9 +5,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Detalii: </h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align: center ">Detalii: </h1>
 
-<div>
+<div style="margin: 30px">
   @*  <h4>Sonorizare</h4>*@
     <hr />
     <dl class="row">
@@ -37,7 +37,7 @@
         </dd>
     </dl>
 </div>
-<div>
+<div style="margin: 30px">
     <a asp-page="./Edit" asp-route-id="@Model.Sonorizare?.ID" style="color: #66A1A8;  text-decoration: none "><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
     <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
    @* <a asp-page="./Edit" asp-route-id="@Model.Sonorizare?.ID">Edit</a> |

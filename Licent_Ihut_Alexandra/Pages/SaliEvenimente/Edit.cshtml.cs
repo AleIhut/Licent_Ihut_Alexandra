@@ -38,6 +38,7 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
              SalaEveniment = await _context.SalaEveniment
                 .Include(b => b.Judet)
                 .Include(b => b.Localitate)
+
           
                 .FirstOrDefaultAsync(m => m.ID == id);
               //  .Include(b => b.Judet)

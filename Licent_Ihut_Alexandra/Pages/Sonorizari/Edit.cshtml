@@ -5,11 +5,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Aici poți să îți editezi propria ta afacere.  </h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align: center">Aici poți să îți editezi propria ta afacere.  </h1>
 
-<h4 style="color: black"> Sonorizare </h4>
+<h4 style="color: black ;text-align: center"> Sonorizare </h4>
 <hr />
-<div class="row">
+<div class="row" style=" margin: 30px">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,11 +19,6 @@
                 <input asp-for="Sonorizare.Nume" class="form-control" />
                 <span asp-validation-for="Sonorizare.Nume" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="Sonorizare.GenMuzical" class="control-label"></label>
-                <input asp-for="Sonorizare.GenMuzical" class="form-control" />
-                <span asp-validation-for="Sonorizare.GenMuzical" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="Sonorizare.Numar" class="control-label"></label>
                 <input asp-for="Sonorizare.Numar" class="form-control" />
@@ -65,13 +60,14 @@
             <div class="form-group">
                @* <input type="submit" value="Save" class="btn btn-primary" />*@
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none"  type="submit" value="Salvează" class="btn btn-primary" />
+                 <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-     <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+    
   @*  <a asp-page="./Index">Back to List</a>*@
 </div>
 

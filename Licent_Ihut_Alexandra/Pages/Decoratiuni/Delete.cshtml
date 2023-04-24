@@ -5,10 +5,10 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Ștergere</h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align:center ">Ștergere</h1>
 
-<h3 style=" color: black">Ești sigur că dorești să ștergi această înregistrare?</h3>
-<div>
+<h3 style=" color: black ; text-align:center">Ești sigur că dorești să ștergi această înregistrare?</h3>
+<div style="margin:50px">
     
     <hr />
     <dl class="row">
@@ -50,7 +50,7 @@
         </dd>
     </dl>
     
-    <form method="post">
+    <form method="post" style="margin:50px">
         <input type="hidden" asp-for="Decoratiune.ID" />
         <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Ștergere" class="btn btn-danger" />
         <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>

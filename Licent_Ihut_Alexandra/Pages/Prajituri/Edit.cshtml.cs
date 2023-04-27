@@ -10,6 +10,7 @@ using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Licent_Ihut_Alexandra.Pages.Prajituri
 {
@@ -18,9 +19,11 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
 
-        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         [BindProperty]
 
@@ -36,11 +39,16 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
                 return NotFound();
             }
 
-            var prajitura =  await _context.Prajitura.FirstOrDefaultAsync(m => m.ID == id);
+            var prajitura =  await _context.Prajitura
+                .Include(x => x.Judet)
+                .Include(x => x.Localitate)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (prajitura == null)
             {
                 return NotFound();
             }
+            var userName = _userManager.GetUserName(User);
+            var userEmail = User.Identity.Name;
             Prajitura = prajitura;
             var localitati = _context.Localitate
                  .Select(x => new
@@ -49,11 +57,19 @@ namespace Licent_Ihut_Alexandra.Pages.Prajituri
                      localitateNume = x.Judet.Nume + "-" + x.NumeLocalitate
                  })
                  .OrderBy(x => x.localitateNume);
-
+            var detaliiMembru = _context.Membru
+                .Where(c => c.Email == userName)
+                .Select(x => new
+                {
+                    x.ID,
+                    DetaliiMembru = x.Nume
+                });
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
+            ViewData["MembruID"] = new SelectList(detaliiMembru, "ID", "DetaliiMembru");
             return Page();
+           
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.

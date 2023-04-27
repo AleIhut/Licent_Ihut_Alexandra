@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 {
@@ -16,10 +17,11 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
     public class EditModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
-        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -39,12 +41,19 @@ namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
             {
                 return NotFound();
             }
+            var userName = _userManager.GetUserName(User);
             var userEmail = User.Identity.Name; //email of the connected user
-            int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
+           // int currentMembruID = _context.Membru.First(membru => membru.Email == userEmail).ID;
             Decoratiuni = Decoratiuni;
-
-           ViewData["MaterialID"] = new SelectList(_context.Set<Material>(), "ID", "Tip");
-            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "Nume", currentMembruID);
+            var detaliiMembru = _context.Membru
+               .Where(c => c.Email == userName)
+               .Select(x => new
+               {
+                   x.ID,
+                   DetaliiMembru = x.Nume
+               });
+            ViewData["MaterialID"] = new SelectList(_context.Set<Material>(), "ID", "Tip");
+            ViewData["MembruID"] = new SelectList(detaliiMembru, "ID", "DetaliiMembru");
             return Page();
         }
 

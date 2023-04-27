@@ -508,6 +508,21 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.ToTable("SalaEveniment");
                 });
 
+            //modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEvenimentAles1", b =>
+            //    {
+            //        b.Property<int>("MembruID")
+            //            .HasColumnType("int");
+
+            //        b.Property<int>("SalaEvenimentID")
+            //            .HasColumnType("int");
+
+            //        b.HasKey("MembruID", "SalaEvenimentID");
+
+            //        b.HasIndex("SalaEvenimentID");
+
+            //        b.ToTable("SalaEvenimentAles1");
+            //    });
+
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Sonorizare", b =>
                 {
                     b.Property<int>("ID")
@@ -755,6 +770,25 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Localitate");
 
                     b.Navigation("Membru");
+                });
+
+            modelBuilder.Entity("Licent_Ihut_Alexandra.Models.SalaEvenimentAles1", b =>
+                {
+                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
+                        .WithMany()
+                        .HasForeignKey("MembruID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Licent_Ihut_Alexandra.Models.SalaEveniment", "SalaEveniment")
+                        .WithMany()
+                        .HasForeignKey("SalaEvenimentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Membru");
+
+                    b.Navigation("SalaEveniment");
                 });
 
             modelBuilder.Entity("Licent_Ihut_Alexandra.Models.Sonorizare", b =>

@@ -5,11 +5,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Promovează aici materialele pirotehnice!</h1>
+<h1 style="color: #66A1A8 ;font-style:italic; text-align:center ">Promovează aici materialele pirotehnice!</h1>
 
-<h4 style=" color: black">Crează-i profilul chiar acum!</h4>
+<h4 style=" color: black ; text-align:center ">Crează-i profilul chiar acum!</h4>
 <hr />
-<div class="row">
+<div class="row" style="margin:30px>
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -53,13 +53,14 @@
             <div class="form-group">
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Crează o nouă înregistrare" class="btn btn-primary" />
             </div>
+            <div>
+                <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+            </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

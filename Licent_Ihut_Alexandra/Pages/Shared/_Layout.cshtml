@@ -27,7 +27,14 @@
 
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link text-muted" asp-area="" asp-page="/Membri/Index"><i class="bi bi-people"></i> Membri</a>
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-muted" asp-area="" asp-page="/Membri/Index"><i class="bi bi-people"></i> Membri</a>
+                            }
+                        }
+                       
                     </li>
                
                     <li class="nav-item">
@@ -56,16 +63,55 @@
                                 <li><a class="dropdown-item" asp-area="" asp-page="/Prajituri/Index"><i class="bi bi-hearts"></i>Prăjituri</a></li>
                              
                             </ul>
+                    
+                   
+
+
+
                           </div>
                        </li>
 
-                 
+                   @* <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle m-2" style="color:#644c5a" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-people-fill"></i>
+                            Profil
+                        </a>
+                        <div class="dropdown-menu">
+                            <partial name="_LoginPartial" />
+                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="bi bi-person-lines-fill"></i>My profile</a>
+                        </div>
+                    </li>
+*@
+
+                    <li class="nav-item text-dark dropdown">
+                        <div class="btn-group dropend">
+
+
+                            <a class="nav-link text-muted dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-check"></i>
+                                Profil
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li> <partial name="_LoginPartial" /></li>
+
+
+                            </ul>
+
+
+
+
+
+                        </div>
+
+                        </li>
+
                 </ul>
 
              
             </div>
 
-           </ul > <partial name="_LoginPartial" />
+           @*</ul > <partial name="_LoginPartial" />*@
             
 
         </div>

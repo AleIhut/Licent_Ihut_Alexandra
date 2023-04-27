@@ -38,6 +38,6 @@ namespace Licent_Ihut_Alexandra.Data
         public DbSet<Licent_Ihut_Alexandra.Models.Localitate> Localitate { get; set; }
         public DbSet<Licent_Ihut_Alexandra.Models.Culoare>? Culoare { get; set; }
         public DbSet<Licent_Ihut_Alexandra.Models.Membru>? Membru { get; set; }
-
-    }
+       
+        }
 }

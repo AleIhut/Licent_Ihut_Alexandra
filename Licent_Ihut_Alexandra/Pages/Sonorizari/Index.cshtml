@@ -31,7 +31,10 @@
         @* div pt a doua linie*@
        
 <p>
+      @if (User.IsInRole("Prestator") || User.IsInRole("Admin"))
+                    {
     <a asp-page="Create" style="color: #66A1A8;  text-decoration: none"><button  class="btn btn-primary" style="background-color: black ; border-color: black ">Introdu oferta!</a>
+                    }
 </p>
 <table class="table table-dark" >
     <thead>

@@ -12,7 +12,10 @@
 <h1 style="color: #66A1A8 ;font-style:italic ">Amabilitatea și buna dispoziție se potrivesc de minune!</h1>
 
 <p>
+      @if (User.IsInRole("Prestator") || User.IsInRole("Admin"))
+                    {
     <a class="btn btn-primary" asp-page="Create" style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">Înscrie aici firma ta de hostess</a>
+                    }
 </p>
 <p style="color: #66A1A8 ;font-style:italic"> Caută  în funcție de nume sau județ  </p>
 <form method="post" class="searchForm">

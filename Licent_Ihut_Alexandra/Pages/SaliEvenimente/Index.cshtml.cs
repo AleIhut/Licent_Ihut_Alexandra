@@ -9,6 +9,7 @@ using Licent_Ihut_Alexandra.Data;
 using Licent_Ihut_Alexandra.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
 {
@@ -23,48 +24,66 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
         }
 
         public IList<SalaEveniment> SalaEveniment { get; set; } = default!;
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
 
-        public async Task OnGetAsync()
-        {/*bool? CeleAlese*/
+        public SelectList? Cautare2 { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+
+        public string? Cautare1 { get; set; }
+        public async Task OnGetAsync(bool? CeleAlese)
+        {
             SalaEveniment = new List<SalaEveniment>();
             if (_context.SalaEveniment != null)
             {
-                //var userEmail1 = User.Identity.Name;
-                //var logareMembruId = _context.Membru.Where(c => c.Email == userEmail1).Select(c => c.ID).FirstOrDefault();
-                 SalaEveniment = await  _context.SalaEveniment
-                      .Include(b => b.Judet)
-                       .Include(b => b.Localitate)
-                       .Include(b => b.Membru)
-                              .ToListAsync();
-                //      .AsNoTracking();
+                var userEmail1 = User.Identity.Name;
+                var logareMembruID = _context.Membru.Where(c => c.Email == userEmail1).Select(c => c.ID).FirstOrDefault();
+                var salaEvenimente = _context.SalaEveniment
+                       .Include(b => b.Judet)
+                        .Include(b => b.Localitate)
+                        .Include(b => b.Membru)
 
-                //if (CeleAlese != null && CeleAlese == true)
-                //{
-                //    salaEveniment = salaEveniment.Join(
-                //        _context.SalaEvenimentAles1.Where(x => x.MembruID == logareMembruId),
-                //        e => e.ID,
-                //       f => f.SalaEvenimentID, (firstentity, secondentity) => new
-                //       {
-                //           SalaEveniment = firstentity,
-                //           SalaEvenimentAles1 = secondentity
-                //       }).Select(entity => entity.SalaEveniment);
-                //}
-                //SalaEveniment = await salaEveniment.ToListAsync();
+                        .AsNoTracking();
+                if (CeleAlese != null && CeleAlese == true)
+                {
+                    salaEvenimente = salaEvenimente.Join(
+                        _context.SalaEvenimentAles.Where(x => x.MembruID == logareMembruID),
+                        e => e.ID,
+                       f => f.SalaEvenimentID, (firstentity, secondentity) => new
+                       {
+                           SalaEveniment = firstentity,
+                           SalaEvenimentAles = secondentity
+                       }).Select(entity => entity.SalaEveniment);
 
-
-
-
-                //var SalaAleasa = _context.SalaEvenimentAles1.Where(x => x.MembruID == logareMembruId).ToList();
-
-                //for (int i = 0; i < SalaEveniment.Count(); i++)
-                //{
-                //    var SalaActuala = SalaEveniment.ElementAt(i);
-
-                    //Aici verifica...Pt event urile din Db se seteaza valoarea pt Addedtofav ca sa seteze Add/Remove to fav
-                    //SalaActuala.AdaugatLaAlese = SalaAleasa.Where(x => x.MembruID == logareMembruId &&
-                    //  x.SalaEvenimentID == SalaActuala.ID
-                    //).FirstOrDefault() != null;
                 }
+                //pt search
+                if (!String.IsNullOrEmpty(SearchString))
+                {
+                    salaEvenimente = salaEvenimente.Where(s => s.Judet.Nume.Contains(SearchString)
+                    ||
+                    s.Nume.Contains(SearchString)
+
+                    );
+                }
+                SalaEveniment = await salaEvenimente.ToListAsync();
+
+                var SalaPreferata = _context.SalaEvenimentAles.Where(x => x.MembruID == logareMembruID).ToList();
+
+                for (int i = 0; i < SalaEveniment.Count(); i++)
+                {
+                    var SalaActuala = SalaEveniment.ElementAt(i);
+
+                   
+                    SalaActuala.AdaugatLaAlese = SalaPreferata.Where(x => x.MembruID == logareMembruID &&
+                      x.SalaEvenimentID == SalaActuala.ID
+                    ).FirstOrDefault() != null;
+                }
+
+
+
+
+            }
 
                var userEmail = User.Identity.Name;
             var role = User.IsInRole("Admin"); // cum pot prelua rolul in variabila rol ????????????
@@ -93,43 +112,47 @@ namespace Licent_Ihut_Alexandra.Pages.SaliEvenimente
            
             }
         
-
-         public async Task OnPostAsync() 
-        //public IActionResult OnPost()
+           public IActionResult OnPost()
         {
-            var searchString = Request.Form["searchString"];
+            var userEmail1 = User.Identity.Name;
+            var logareMembruId = _context.Membru.Where(c => c.Email == userEmail1).Select(c => c.ID).FirstOrDefault();
 
-            SalaEveniment = await _context.SalaEveniment
-                 .Include(b => b.Judet)
-                .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
+            var SalaID = Request.Form["SalaID"];
+            var EsteAdaugatLaAlese = Request.Form["EsteAdaugatLaAlese"];
+            var SalaIubita = new SalaEvenimentAles();
 
+            SalaIubita.SalaEvenimentID = Int32.Parse(SalaID);
+            SalaIubita.MembruID = logareMembruId;
 
+            if (!bool.Parse(EsteAdaugatLaAlese))
+            {
+                _context.SalaEvenimentAles.Add(SalaIubita);
+            }
+            else
+            {
+                _context.SalaEvenimentAles.Remove(SalaIubita);
 
-            //var userEmail1 = User.Identity.Name;
-            //var logareMembruId = _context.Membru.Where(c => c.Email == userEmail1).Select(c => c.ID).FirstOrDefault();
+            }
 
-            //var SalaID = Request.Form["SalaID"];
-            //var EsteAdaugatLaAlese = Request.Form["EsteAdaugatLaAlese"];
-            //var SalaIubita = new SalaEvenimentAles1();
-
-            //SalaIubita.SalaEvenimentID = Int32.Parse(SalaID);
-            //SalaIubita.MembruID = logareMembruId;
-
-            //if (!bool.Parse(EsteAdaugatLaAlese))
-            //{
-            //    _context.SalaEvenimentAles1.Add(SalaIubita);
-            //}
-            //else
-            //{
-            //    _context.SalaEvenimentAles1.Remove(SalaIubita);
-
-            //}
-
-           // _context.SaveChanges();
+            _context.SaveChanges();
 
 
-           //return RedirectToPage("./Index");
-         }
-     
+            return RedirectToPage("./Index");
+
+        }
+        // public async Task OnPostAsync() 
+
+        //{
+        //    var searchString = Request.Form["searchString"];
+
+        //    SalaEveniment = await _context.SalaEveniment
+        //         .Include(b => b.Judet)
+        //        .Where(x => x.Nume.Contains(searchString) || x.Judet.Nume.Contains(searchString)).ToListAsync();
+
+
+
+
+        // }
+
     }
 }

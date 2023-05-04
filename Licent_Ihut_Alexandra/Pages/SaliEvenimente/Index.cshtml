@@ -33,10 +33,10 @@
                       
                  
 </p>
-                @* <button type="button" class="btn btn-outline-dark">
-                <a class= asp-area ="" asp-page="Index" asp-route-CeleAlese="@true">Show favourites</a>
+                <button type="button" class="btn btn-outline-dark" style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">
+                    <a class=asp-area ="" asp-page="Index" asp-route-CeleAlese="@true " style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">Show favourites</a>
 
-                </button>*@
+                </button>
    
 
    
@@ -52,15 +52,27 @@
     <div> @*div pt a doua linie*@
         </br>
       
-            <p style="color: #66A1A8 ;font-style:italic"> Caută aici în funcție de nume sau județ  </p>
-            <form method="post" class="searchForm">
-                <input type="text" name="searchString" />
-                @* <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Căutare" class="btn btn-primary" />*@
-                <div>
-                    <a type="submit" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Caută</a>
-                    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+           <p style="color: #66A1A8 ;font-style:italic"> Caută aici în funcție de nume sau județ  </p>
+           @* <form >
+                <input type="text" asp-form="SearchString" />
+               
+                <div>*@
+                   @* <a style="color: #66A1A8;  text-decoration: none"><button type="submit" class="btn btn-primary" style="background-color: black ; border-color: black ; color: #66A1A8">Caută</button>@*</a>*@
+                 @*   <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
                 </div>
 
+
+            </form>*@
+            <form>
+                <div >
+                    <div style="display: inline-flex">
+                        <input type="text" class="form-control"  asp-for="SearchString">
+                    </div>
+                    <div >
+                        <button class="btn btn-primary" type="submit" style="background-color: black ; border-color: black ; color:#66A1A8  ">Search</button>
+                        <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+                    </div>
+                </div>
 
             </form>
             
@@ -103,28 +115,42 @@
                                 <div>
                                     @if (User.IsInRole("Prestator") )
                                     {
-                                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+                                        <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                            <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none">Editează</a> 
+                                            </button>
                                     }
 
-                                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
+                                    <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                        <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none">Detalii</a>
+                                        </button>
                                     @if (User.IsInRole("Prestator") || User.IsInRole("Admin"))
                                     {
-                                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Șterge</a>
+                                        <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                            <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none">Șterge</a>
+                                        </button>
                                     }
+                                    
                                 @*  pt favorit*@
-                                      @*  <form method="post">
+                                    <form method="post" style="color: #66A1A8; background-color: black ; border-color: black" class="btn btn-primary">
                                         <input type="hidden" name="SalaID" value="@item.ID" />
                                         <input type="hidden" name="EsteAdaugatLaAlese" value="@item.AdaugatLaAlese.ToString()" />
                                         @if (item.AdaugatLaAlese == true)
                                         {
-                                            <i class="bi bi-x-circle-fill"></i> <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:#57424f; border-color:#d8cfd4; width:170px; margin:10px auto 0; border-radius:50px">
+                                           @* <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:black; border-color: black; width:170px; margin:10px auto 0; border-radius:50px">*@
+
+
+                                           @* <div class="form-group">*@
+                                            <input style="color: #66A1A8; background-color: black" type="submit" value="Șterge Opțiunea" />
+                                           @* </div>*@
                                         }
                                         else
                                         {
-                                            <i class="bi bi-chat-square-heart-fill"></i> <input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:#beafb8; border-color:#d8cfd4; width:120px; margin:10px auto 0; border-radius:50px">
-
+                                            <input style="color: #66A1A8; background-color: black" type="submit" value="Adaugă Opțiunea" />
+                                            @*<input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:black; border-color: black; width:120px; margin:10px auto 0; border-radius:50px">
+*@
                                         }
-                                    </form>*@
+                                       
+                                    </form>
 
                                 </div>
             </div>

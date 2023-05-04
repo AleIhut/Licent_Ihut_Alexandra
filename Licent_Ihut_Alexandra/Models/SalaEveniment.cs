@@ -42,7 +42,9 @@ namespace Licent_Ihut_Alexandra.Models
         public string Descriere { get; set; }
         public int? MembruID { get; set; }
         public Membru? Membru { get; set; }
-        
 
+        [NotMapped]
+        public bool AdaugatLaAlese { get; set; }
+        
     }
 }

@@ -9,7 +9,7 @@ namespace Licent_Ihut_Alexandra.Data
 {
     public class Licent_Ihut_AlexandraContext : DbContext
     {
-        public Licent_Ihut_AlexandraContext (DbContextOptions<Licent_Ihut_AlexandraContext> options)
+        public Licent_Ihut_AlexandraContext(DbContextOptions<Licent_Ihut_AlexandraContext> options)
             : base(options)
         {
         }
@@ -38,6 +38,13 @@ namespace Licent_Ihut_Alexandra.Data
         public DbSet<Licent_Ihut_Alexandra.Models.Localitate> Localitate { get; set; }
         public DbSet<Licent_Ihut_Alexandra.Models.Culoare>? Culoare { get; set; }
         public DbSet<Licent_Ihut_Alexandra.Models.Membru>? Membru { get; set; }
-       
+
+        public DbSet<Licent_Ihut_Alexandra.Models.SalaEvenimentAles> SalaEvenimentAles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SalaEvenimentAles>()
+                .HasKey(c => new { c.MembruID, c.SalaEvenimentID });
         }
+    }
 }

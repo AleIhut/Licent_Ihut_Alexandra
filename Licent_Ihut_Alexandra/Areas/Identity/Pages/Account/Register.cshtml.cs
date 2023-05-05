@@ -81,6 +81,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
 
             public string? Nume { get; set; }
             public string? Prenume { get; set; }
+            [Display(Name = "Adresă")]
             public string? Adresa { get; set; }
 
 
@@ -107,7 +108,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Parolă")]
             public string Password { get; set; }
 
             /// <summary>
@@ -115,8 +116,8 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmă parola")]
+            [Compare("Password", ErrorMessage = "Parola și Confirmă parola nu se potrivesc.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -212,6 +213,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {
+
                     return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                 }
                 else
@@ -225,6 +227,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, error.Description);
             }
             // If we got this far, something failed, redisplay form
+
             return Page();
         }
 

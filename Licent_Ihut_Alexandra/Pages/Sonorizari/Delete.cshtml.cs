@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Licent_Ihut_Alexandra.Pages.Sonorizari
 {
-    [Authorize(Roles = "Prestator")]
+    [Authorize(Roles = "Prestator, Admin")]
     public class DeleteModel : PageModel
     {
         

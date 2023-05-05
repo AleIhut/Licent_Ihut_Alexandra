@@ -112,7 +112,7 @@
 
                             <div style="width:100%;  display:inline-block; padding:4px ; border: 10px " class="card">
                     <span stlye="padding-bottom:4px;">
-                                    <img src="data:image/jpg;base64 , @item.Imagine" style= "width:100% ;  height:50% "   />
+                                    <img src="data:image/jpg;base64 , @item.Imagine" style=" width:400px ; height:200px" />
                     </span>
                         @Html.DisplayNameFor(model => model.Fotografi[0].Nume)
                         @Html.DisplayFor(modelItem => item.Nume) 
@@ -121,11 +121,22 @@
                     @Html.DisplayFor(modelItem => item.Judet.Nume)
                     <p></p>
                                 <div>
-                                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+                                    @if (User.IsInRole("Prestator"))
+                                    {
+                                        <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                            <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none">Editează</a>
+                                        </button>
+                                    }
 
-                                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
-
-                                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Șterge</a>
+                                    <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                        <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none">Detalii</a>
+                                    </button>
+                                    @if (User.IsInRole("Prestator") || User.IsInRole("Admin"))
+                                    {
+                                        <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                            <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none">Șterge</a>
+                                        </button>
+                                    }
                                 </div>
             </div>
            

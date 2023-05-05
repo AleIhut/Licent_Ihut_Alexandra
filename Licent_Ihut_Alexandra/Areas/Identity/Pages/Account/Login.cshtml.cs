@@ -73,6 +73,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [Display(Name = "Parolă")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 

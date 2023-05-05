@@ -29,6 +29,12 @@
                 <input asp-for="Sonorizare.Descriere" class="form-control" />
                 <span asp-validation-for="Sonorizare.Descriere" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Sonorizare.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="Sonorizare.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+                
+                <span asp-validation-for="Sonorizare.MembruID" class="text-danger"></span>
+            </div>
              <div class="form-group">
                 <div class="table">
                     <table>
@@ -60,8 +66,9 @@
             <div class="form-group">
                @* <input type="submit" value="Save" class="btn btn-primary" />*@
                 <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none"  type="submit" value="Salvează" class="btn btn-primary" />
-                 <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
-            </div>
+                </div>
+                <div> <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a> </div>
+            
         </form>
     </div>
 </div>

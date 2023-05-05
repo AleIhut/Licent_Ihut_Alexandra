@@ -11,6 +11,7 @@ using Licent_Ihut_Alexandra.Models;
 using Microsoft.Extensions.Hosting;
 using System.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Licent_Ihut_Alexandra.Pages.Hostess
 {
@@ -18,10 +19,11 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
     public class EditModel : CuloriRochitaPageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
-
-        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public EditModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -37,7 +39,7 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
              //var hostes = await _context.Hostes
               Hostes = await _context.Hostes
                 //.Include(b => b.Judet)
-                //.Include(b => b.Localitate)
+               // .Include(b => b.Localitate)
                 .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
@@ -47,7 +49,9 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             }
 
             PopulateAssignedCuloareData(_context, Hostes);
-          //  Hostes = Hostes;
+            var userName = _userManager.GetUserName(User);
+            var userEmail = User.Identity.Name;
+            Hostes = Hostes;
             var localitati = _context.Localitate
                 .Select(x => new
                 {
@@ -55,10 +59,18 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
                     localitateNume = x.Judet.Nume + "-" + x.NumeLocalitate
                 })
                 .OrderBy(x => x.localitateNume);
-
+            var detaliiMembru = _context.Membru
+               .Where(c => c.Email == userName)
+               .Select(x => new
+               {
+                   x.ID,
+                   DetaliiMembru = x.Nume
+               });
             ViewData["JudetID"] = new SelectList(_context.Set<Judet>(), "ID", "Nume");
 
             ViewData["LocalitateID"] = new SelectList(localitati, "ID", "localitateNume");
+            ViewData["MembruID"] = new SelectList(detaliiMembru, "ID", "DetaliiMembru");
+
             return Page();
         }
 
@@ -72,24 +84,24 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
                 return NotFound();
             }
 
-            byte[] bytes = null;
-            if (Hostes.FisierImagine != null)
-            {
-                using (Stream fs = Hostes.FisierImagine.OpenReadStream())
-                {
-                    using (BinaryReader br = new BinaryReader(fs))
-                    {
-                        bytes = br.ReadBytes((Int32)fs.Length);
-                    }
+            //byte[] bytes = null;
+            //if (Hostes.FisierImagine != null)
+            //{
+            //    using (Stream fs = Hostes.FisierImagine.OpenReadStream())
+            //    {
+            //        using (BinaryReader br = new BinaryReader(fs))
+            //        {
+            //            bytes = br.ReadBytes((Int32)fs.Length);
+            //        }
 
-                }
-                Hostes.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+            //    }
+            //    Hostes.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
 
-            }
+            //}
 
 
             var hostesToUpdate = await _context.Hostes
-                .Include(i => i.Judet)
+               .Include(i => i.Judet)
                .Include(i => i.Localitate)
             .Include(i => i.HostesCulori)
             .ThenInclude(i => i.Culoare)
@@ -109,18 +121,20 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             hostesToUpdate,
             "Hostes",
             i => i.Nume, i => i.JudetID,
-            i => i.LocalitateID,/* i => i.Imagine,*/ i => i.Telefon, i => i.Email, i => i.Descriere))
-         
+            i => i.LocalitateID,  i => i.Telefon, i => i.Email, i => i.Descriere))
+            //    i => i.JudetID,
+            //i => i.LocalitateID, i => i.Imagine,
+
             {
                 UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
-                Console.WriteLine("trying to save  changes");
+               // Console.WriteLine("trying to save  changes");
                 await _context.SaveChangesAsync();
-                Console.WriteLine("saved S");
+               // Console.WriteLine("saved S");
                 return RedirectToPage("./Index");
             }
             //Apelam UpdateBookCategories pentru a aplica informatiile din checkboxuri la entitatea Books care
             //este editata
-            Console.WriteLine("UPDATE HOSTES");
+            //Console.WriteLine("UPDATE HOSTES");
             UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
             PopulateAssignedCuloareData(_context, hostesToUpdate);
             return Page();

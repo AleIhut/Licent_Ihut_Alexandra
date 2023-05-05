@@ -18,8 +18,8 @@ namespace Licent_Ihut_Alexandra.Pages.Sonorizari
         
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;
         //private Sonorizare newSonorizare;
-
         private readonly UserManager<IdentityUser> _userManager;
+       
         public CreateModel(Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;

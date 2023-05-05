@@ -89,11 +89,28 @@
                 @Html.DisplayFor(modelItem => item.Descriere)
             </td>*@
             <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
+                        <th>
+                                @if (User.IsInRole("Prestator"))
+                                {
+                                <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                    <a asp-page="./Edit" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none">Editează</a>
+                                </button>
+                                }
 
-                    <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
 
-                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Șterge</a>
+                        </th>
+                        <th>
+                            <a asp-page="./Details" asp-route-id="@item.ID" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Detalii</a>
+
+                        </th>
+                        <th>
+                                @if (User.IsInRole("Prestator") || User.IsInRole("Admin"))
+                                {
+                                <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                                    <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none">Șterge</a>
+                                </button>
+                                }
+                        </th>
             </td>
         </tr>
 }

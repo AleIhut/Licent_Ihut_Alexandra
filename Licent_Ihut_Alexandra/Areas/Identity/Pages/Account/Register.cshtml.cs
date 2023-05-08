@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 
@@ -88,6 +89,7 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
             [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
             public string? Telefon { get; set; }
 
+            [Display(Name = "")]
             public int? UserSauPrestatorID { get; set; }
             public UserSauPrestator? UserSauPrestator { get; set; }
             ///// <summary>
@@ -125,10 +127,11 @@ namespace Licent_Ihut_Alexandra.Areas.Identity.Pages.Account
         public async Task OnGetAsync(string returnUrl = null)
         {
             
-            ReturnUrl = returnUrl;
-            ViewData["UserSauPrestatorID"] = new SelectList(_context.Set<UserSauPrestator>(), "ID", "Tip");
-           // ViewData["UserSauPrestatorID"] = new SelectList(_context.UserSauPrestator , "ID", "Tip");
+           ReturnUrl = returnUrl;
+         ViewData["UserSauPrestatorID"] = new SelectList(_context.Set<UserSauPrestator>(), "ID", "Tip");
+            //ViewData["UserSauPrestatorID"] = new SelectList(_context.UserSauPrestator , "ID", "Tip");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

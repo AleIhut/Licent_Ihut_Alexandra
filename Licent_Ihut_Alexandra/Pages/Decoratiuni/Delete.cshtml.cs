@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Licent_Ihut_Alexandra.Pages.Decoratiuni
 {
-    [Authorize(Roles = "Prestator")]
+    [Authorize(Roles = "Prestator, Admin")]
     public class DeleteModel : PageModel
     {
         private readonly Licent_Ihut_Alexandra.Data.Licent_Ihut_AlexandraContext _context;

@@ -1,0 +1,137 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.PacheteleMele.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="color: #66A1A8;text-align:center" >Pachetele mele  </h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create" style="color: #66A1A8;margin:20px ; background-color: black; text-decoration: none; border-color: black">Adaugă o sala nouă</a>
+</p>
+<div class="row" style="margin:20px">
+    @foreach (var item in Model.PachetulMeu)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <b> Locație:</b>
+                        @Html.DisplayFor(modelItem => item.SalaEveniment.Nume)
+                        -
+                        @Html.DisplayFor(modelItem => item.SalaEveniment.Telefon)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><b>Sonorizare:</b>  
+                            @Html.DisplayFor(modelItem => item.Sonorizare.Nume)
+                            -
+                            @Html.DisplayFor(modelItem => item.Sonorizare.Numar)
+                        </li>
+                        <li><b>Decoratiune:</b>
+                            @Html.DisplayFor(modelItem => item.Decoratiune.Companie)
+                            -
+                            @Html.DisplayFor(modelItem => item.Decoratiune.Telefon)
+                        </li>
+                        <li><b>Fotograf:</b>   @Html.DisplayFor(modelItem => item.Fotograf.Nume)
+                        -
+                            @Html.DisplayFor(modelItem => item.Fotograf.Telefon)
+                        </li>
+                        <li><b>Artisti:</b> @Html.DisplayFor(modelItem => item.Artist.Nume)
+                        -
+                            @Html.DisplayFor(modelItem => item.Artist.Telefon)
+                        </li>
+                        <li><b>Hostes:</b>  @Html.DisplayFor(modelItem => item.Hostes.Nume)
+                        -
+                            @Html.DisplayFor(modelItem => item.Hostes.Telefon)
+                        </li>
+                        <li><b>Material Pirotehnic:</b>  @Html.DisplayFor(modelItem => item.MaterialPirotehnic.Nume)
+                        -
+                            @Html.DisplayFor(modelItem => item.MaterialPirotehnic.Telefon)
+                        </li>
+                        <li><b>Prajitura:</b>  @Html.DisplayFor(modelItem => item.Prajitura.Nume)
+                        -
+                            @Html.DisplayFor(modelItem => item.Prajitura.Telefon)
+                        </li>
+                    </ul>
+                  
+                    
+                    <button class="btn btn-primary" style="background-color: black ; border-color: black ">
+                        <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none">Șterge</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].SalaEveniment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Sonorizare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Decoratiune)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Fotograf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Hostes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].MaterialPirotehnic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PachetulMeu[0].Prajitura)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PachetulMeu) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaEveniment.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sonorizare.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Decoratiune.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fotograf.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hostes.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialPirotehnic.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prajitura.ID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>*@
+@*}
+    </tbody>
+</table>
+*@

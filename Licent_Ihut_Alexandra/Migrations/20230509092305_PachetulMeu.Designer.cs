@@ -4,6 +4,7 @@ using Licent_Ihut_Alexandra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Licent_Ihut_Alexandra.Migrations
 {
     [DbContext(typeof(Licent_Ihut_AlexandraContext))]
-    partial class Licent_Ihut_AlexandraContextModelSnapshot : ModelSnapshot
+    [Migration("20230509092305_PachetulMeu")]
+    partial class PachetulMeu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -423,9 +425,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Property<int?>("MaterialPirotehnicID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MembruID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PrajituraID")
                         .HasColumnType("int");
 
@@ -446,8 +445,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.HasIndex("HostesID");
 
                     b.HasIndex("MaterialPirotehnicID");
-
-                    b.HasIndex("MembruID");
 
                     b.HasIndex("PrajituraID");
 
@@ -810,10 +807,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                         .WithMany("PacheteleMele")
                         .HasForeignKey("MaterialPirotehnicID");
 
-                    b.HasOne("Licent_Ihut_Alexandra.Models.Membru", "Membru")
-                        .WithMany("PacheteleMele")
-                        .HasForeignKey("MembruID");
-
                     b.HasOne("Licent_Ihut_Alexandra.Models.Prajitura", "Prajitura")
                         .WithMany("PacheteleMele")
                         .HasForeignKey("PrajituraID");
@@ -835,8 +828,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Hostes");
 
                     b.Navigation("MaterialPirotehnic");
-
-                    b.Navigation("Membru");
 
                     b.Navigation("Prajitura");
 
@@ -1019,8 +1010,6 @@ namespace Licent_Ihut_Alexandra.Migrations
                     b.Navigation("Hostess");
 
                     b.Navigation("MaterialePirotehnice");
-
-                    b.Navigation("PacheteleMele");
 
                     b.Navigation("Prajituri");
 

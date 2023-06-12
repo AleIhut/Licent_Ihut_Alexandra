@@ -5,13 +5,13 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 style="color: #66A1A8 ;font-style:italic ">Aici poți să îți editezi propria ta afacere.  </h1>
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align: center">Aici poți să îți editezi propria ta afacere.  </h1>
 
-<h4 style="color: black"> Hostess </h4>
+<h4 style="color: black ; text-align: center"> Hostess </h4>
 <hr />
-<div class="row">
+<div class="row" style=" margin: 30px">
     <div class="col-md-4" >
-        <form method="post" >   @*enctype="multipart/form-data"*@
+        <form method="post" enctype="multipart/form-data">   
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Hostes.ID" />
             <div class="form-group">
@@ -29,17 +29,17 @@
                 <select asp-for="Hostes.LocalitateID" class="form-control" asp-items="ViewBag.LocalitateID"></select>
                 <span asp-validation-for="Hostes.LocalitateID" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Hostes.FisierImagine" class="control-label"></label>
                 <input asp-for="Hostes.FisierImagine" class="form-control" />
                 <span asp-validation-for="Hostes.FisierImagine" class="text-danger"></span>
-            </div>*@
+            </div>
            @* <div class="form-group">
                 <label asp-for="Hostes.Culori" class="control-label"></label>
                 <input asp-for="Hostes.Culori" class="form-control" />
                 <span asp-validation-for="Hostes.Culori" class="text-danger"></span>
             </div>*@
-             <div class="form-group">
+             @*<div class="form-group">
                 <div class="table">
                     <table>
                         <tr>
@@ -64,7 +64,7 @@
                             }
                         </table>
                     </div>
-                </div>
+                </div>*@
             <div class="form-group">
                 <label asp-for="Hostes.Telefon" class="control-label"></label>
                 <input asp-for="Hostes.Telefon" class="form-control" />
@@ -81,16 +81,23 @@
                 <span asp-validation-for="Hostes.Descriere" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Hostes.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="Hostes.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+
+                <span asp-validation-for="Hostes.MembruID" class="text-danger"></span>
+            </div> <br />
+            <div class="form-group">
                <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none"  type="submit" value="Salvează" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
 
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -45,7 +45,10 @@
     </dl>
 </div>
 <div style="margin:30px">
+     @if (User.IsInRole("Prestator"))
+    {
     <a asp-page="./Edit" asp-route-id="@Model.MaterialPirotehnic?.ID" style="color: #66A1A8;  text-decoration: none "><button class="btn btn-primary" style="background-color: black ; border-color: black ">Editează</a>
-    <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+    }
+        <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
    
 </div>

@@ -1,0 +1,70 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.PacheteleMele.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="color: #66A1A8 ;font-style:italic ; text-align: center">Ștergere</h1>
+
+<h3 style=" color: black ; text-align: center">Ești sigur că dorești să ștergi această înregistrare?</h3>
+<div style="margin: 30px;">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.SalaEveniment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.SalaEveniment.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Sonorizare)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Sonorizare.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Decoratiune)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Decoratiune.Companie)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Fotograf)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Fotograf.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Artist)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Artist.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Hostes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Hostes.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.MaterialPirotehnic)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.MaterialPirotehnic.Nume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PachetulMeu.Prajitura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PachetulMeu.Prajitura.Nume)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="PachetulMeu.ID" />
+        <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Ștergere" class="btn btn-danger" />
+        <a asp-page="Index" style="color: #66A1A8;  text-decoration: none"><button class="btn btn-primary" style="background-color: black ; border-color: black ">Înapoi la listă </a>
+
+    </form>
+</div>

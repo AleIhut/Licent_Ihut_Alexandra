@@ -33,11 +33,13 @@
                       
                  
 </p>
+ @if (User.IsInRole("User"))
+    {
                 <button type="button" class="btn btn-outline-dark" style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">
                     <a asp-page="Index" asp-route-CeleAlese="@true " style="color: #66A1A8; background-color: black; text-decoration: none; border-color: black">Optiunile mele</a>
 
                 </button>
-   
+    }
 
    
             </div> @*div inchis pt prima coloana*@
@@ -129,30 +131,33 @@
                                             <a asp-page="./Delete" asp-route-id="@item.ID" style="color: #66A1A8 ; text-decoration: none">Șterge</a>
                                         </button>
                                     }
-                                    
-                                @*  pt favorit*@
-                                    <form method="post" style="color: #66A1A8; background-color: black ; border-color: black" class="btn btn-primary">
-                                        <input type="hidden" name="SalaID" value="@item.ID" />
-                                        <input type="hidden" name="EsteAdaugatLaAlese" value="@item.AdaugatLaAlese.ToString()" />
-                                        @if (item.AdaugatLaAlese == true)
-                                        {
-                                           @* <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:black; border-color: black; width:170px; margin:10px auto 0; border-radius:50px">*@
+
+                                    @*  pt favorit*@
+                                    @if (User.IsInRole("User"))
+                                    {
+                                        <form method="post" style="color: #66A1A8; background-color: black ; border-color: black" class="btn btn-primary">
+                                            <input type="hidden" name="SalaID" value="@item.ID" />
+                                            <input type="hidden" name="EsteAdaugatLaAlese" value="@item.AdaugatLaAlese.ToString()" />
+                                            @if (item.AdaugatLaAlese == true)
+                                            {
+                                                @* <input type="submit" value="Remove from fav" class="btn btn-primary" style="background-color:black; border-color: black; width:170px; margin:10px auto 0; border-radius:50px">*@
 
 
-                                           @* <div class="form-group">*@
-                                            <input style="color: #66A1A8; background-color: black; text-decoration:none" type="submit" value="Șterge Opțiunea" />
-                                           @* </div>*@
-                                        }
-                                        else
-                                        {
-                                            <input style="color: #66A1A8; background-color: black ; text-decoration:none" type="submit" value="Adaugă Opțiunea" />
-                                            @*<input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:black; border-color: black; width:120px; margin:10px auto 0; border-radius:50px">
+                                                @* <div class="form-group">*@
+                                                <input style="color: #66A1A8; background-color: black; text-decoration:none" type="submit" value="Șterge Opțiunea" />
+                                                @* </div>*@
+                                            }
+                                            else
+                                            {
+                                                <input style="color: #66A1A8; background-color: black ; text-decoration:none" type="submit" value="Adaugă Opțiunea" />
+                                                @*<input type="submit" value="Add to fav" class="btn btn-primary" style="background-color:black; border-color: black; width:120px; margin:10px auto 0; border-radius:50px">
 *@
-                                        }
-                                       
-                                    </form>
+                                            }
 
+                                        </form>
+                                    }
                                 </div>
+                              
             </div>
 
             

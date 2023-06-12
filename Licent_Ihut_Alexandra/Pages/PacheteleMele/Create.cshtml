@@ -1,0 +1,80 @@
+﻿@page
+@model Licent_Ihut_Alexandra.Pages.PacheteleMele.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="text-align:center; color: #66A1A8 ;font-style:italic">Alege aici câte un prestator de servicii pentru fiecare categorie</h1>
+
+<h4 style="text-align:center; color: #66A1A8 ;font-style:italic">Pachetul meu pentru un eveniment memorabil</h4>
+
+<div class="row" style="margin:30px">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="PachetulMeu.SalaEvenimentID" class="control-label">Sala de Evenimente & Contact</label>
+                <select asp-for="PachetulMeu.SalaEvenimentID" class ="form-control" asp-items="ViewBag.SalaEvenimentID"></select>
+               
+            </div>*@
+            <div class="form-group">
+                <label asp-for="PachetulMeu.SalaEvenimentID" class="control-label">Sala de Evenimente & Contact</label>
+                <select asp-for="PachetulMeu.SalaEvenimentID" class="form-control" asp-items="ViewBag.SalaEvenimentID">
+                    <option value="">-- Selectează --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PachetulMeu.SonorizareID" class="control-label">Sonorizare  & Contact</label>
+                <select asp-for="PachetulMeu.SonorizareID" class="form-control" asp-items="ViewBag.SonorizareID">  <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.DecoratiuneID" class="control-label">Decorațiuni  & Contact</label>
+                <select asp-for="PachetulMeu.DecoratiuneID" class="form-control" asp-items="ViewBag.DecoratiuneID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.FotografID" class="control-label">Fotografi & Contact</label>
+                <select asp-for="PachetulMeu.FotografID" class="form-control" asp-items="ViewBag.FotografID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.ArtistID" class="control-label">Artiști & Contact</label>
+                <select asp-for="PachetulMeu.ArtistID" class="form-control" asp-items="ViewBag.ArtistID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.HostesID" class="control-label">Hostess & Contact</label>
+                <select asp-for="PachetulMeu.HostesID" class="form-control" asp-items="ViewBag.HostesID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.MaterialPirotehnicID" class="control-label">Artificii & Contact</label>
+                <select asp-for="PachetulMeu.MaterialPirotehnicID" class="form-control" asp-items="ViewBag.MaterialPirotehnicID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.PrajituraID" class="control-label">Prăjituri & Contact</label>
+                <select asp-for="PachetulMeu.PrajituraID" class="form-control" asp-items="ViewBag.PrajituraID"> <option value="">-- Selectează --</option></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PachetulMeu.MembruID" class="control-label">Nume membru</label>
+                <select asp-for="PachetulMeu.MembruID" class="form-control" asp-items="ViewBag.MembruID"> </select>
+                
+            </div>
+            <br />
+            <div class="form-group">
+               @* <input type="submit" value="Crează-mi pachetul" class="btn btn-primary" />*@
+
+                <input style="color: #66A1A8; background-color: black ; border-color: black; text-decoration: none" type="submit" value="Crează-mi pachetul" class="btn btn-primary" />
+               
+            </div>
+            <div >
+                <button class="btn btn-primary" style="background-color: black ; border-color: black "> <a asp-page="Index" style="color: #66A1A8; margin: 25px;  text-decoration: none">Înapoi la listă </a></button>
+            </div>
+        </form>
+       
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

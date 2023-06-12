@@ -38,17 +38,17 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
              //var hostes = await _context.Hostes
               Hostes = await _context.Hostes
-                //.Include(b => b.Judet)
-               // .Include(b => b.Localitate)
-                .Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
-                .AsNoTracking()
+                .Include(b => b.Judet)
+                .Include(b => b.Localitate)
+                //.Include(b => b.HostesCulori).ThenInclude(b => b.Culoare)
+               // .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (Hostes == null)
             {
                 return NotFound();
             }
 
-            PopulateAssignedCuloareData(_context, Hostes);
+            //PopulateAssignedCuloareData(_context, Hostes);
             var userName = _userManager.GetUserName(User);
             var userEmail = User.Identity.Name;
             Hostes = Hostes;
@@ -76,68 +76,71 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int? id, string[] selectedCulori)
+        public async Task<IActionResult> OnPostAsync()
         {
+//int? id, string[] selectedCulori
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            if (id == null)
+            byte[] bytes = null;
+            if (Hostes.FisierImagine != null)
             {
-                return NotFound();
+                using (Stream fs = Hostes.FisierImagine.OpenReadStream())
+                {
+                    using (BinaryReader br = new BinaryReader(fs))
+                    {
+                        bytes = br.ReadBytes((Int32)fs.Length);
+                    }
+
+                }
+                Hostes.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
+
             }
 
-            //byte[] bytes = null;
-            //if (Hostes.FisierImagine != null)
+
+            //var hostesToUpdate = await _context.Hostes
+            //   .Include(i => i.Judet)
+            //   .Include(i => i.Localitate)
+            //.Include(i => i.HostesCulori)
+            //.ThenInclude(i => i.Culoare)
+            //.FirstOrDefaultAsync(s => s.ID == id);
+
+
+
+
+            //if (hostesToUpdate == null)
             //{
-            //    using (Stream fs = Hostes.FisierImagine.OpenReadStream())
-            //    {
-            //        using (BinaryReader br = new BinaryReader(fs))
-            //        {
-            //            bytes = br.ReadBytes((Int32)fs.Length);
-            //        }
-
-            //    }
-            //    Hostes.Imagine = Convert.ToBase64String(bytes, 0, bytes.Length);
-
+            //    return NotFound();
             //}
 
 
-            var hostesToUpdate = await _context.Hostes
-               .Include(i => i.Judet)
-               .Include(i => i.Localitate)
-            .Include(i => i.HostesCulori)
-            .ThenInclude(i => i.Culoare)
-            .FirstOrDefaultAsync(s => s.ID == id);
 
+            //if (await TryUpdateModelAsync<Hostes>(
+            //hostesToUpdate,
+            //"Hostes",
+            //i => i.Nume, i => i.JudetID,
+            //i => i.LocalitateID,  i => i.Telefon, i => i.Email, i => i.Descriere))
 
-           
-
-            if (hostesToUpdate == null)
-            {
-                return NotFound();
-            }
-
-
-
-            if (await TryUpdateModelAsync<Hostes>(
-            hostesToUpdate,
-            "Hostes",
-            i => i.Nume, i => i.JudetID,
-            i => i.LocalitateID,  i => i.Telefon, i => i.Email, i => i.Descriere))
             //    i => i.JudetID,
             //i => i.LocalitateID, i => i.Imagine,
 
-            {
-                UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
-               // Console.WriteLine("trying to save  changes");
-                await _context.SaveChangesAsync();
-               // Console.WriteLine("saved S");
-                return RedirectToPage("./Index");
-            }
+            //{
+            //    UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
+
+            //    await _context.SaveChangesAsync();
+
+            //    return RedirectToPage("./Index");
+            //}
             //Apelam UpdateBookCategories pentru a aplica informatiile din checkboxuri la entitatea Books care
             //este editata
             //Console.WriteLine("UPDATE HOSTES");
-            UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
-            PopulateAssignedCuloareData(_context, hostesToUpdate);
-            return Page();
+
+            //UpdateHostesCulori(_context, selectedCulori, hostesToUpdate);
+            //PopulateAssignedCuloareData(_context, hostesToUpdate);
+            //return Page();
+
             //    if (!ModelState.IsValid)
             //    {
             //        return Page();
@@ -169,6 +172,29 @@ namespace Licent_Ihut_Alexandra.Pages.Hostess
             //    return _context.Hostes.Any(e => e.ID == id);
             //}
 
+            _context.Attach(Hostes).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HostesExists(Hostes.ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+
+        }
+        private bool HostesExists(int id)
+        {
+            return _context.Hostes.Any(e => e.ID == id);
         }
     }
 }

@@ -39,5 +39,6 @@ namespace Licent_Ihut_Alexandra.Models
         public string? Descriere { get; set; }
         public int? MembruID { get; set; }
         public Membru? Membru { get; set; }
+        public ICollection<PachetulMeu>? PacheteleMele { get; set; }
     }
 }

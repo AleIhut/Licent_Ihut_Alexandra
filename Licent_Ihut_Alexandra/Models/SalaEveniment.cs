@@ -45,6 +45,8 @@ namespace Licent_Ihut_Alexandra.Models
 
         [NotMapped]
         public bool AdaugatLaAlese { get; set; }
-        
+
+        public ICollection<PachetulMeu>? PacheteleMele { get; set; }
+
     }
 }
